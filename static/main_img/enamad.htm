@@ -1,0 +1,396 @@
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1"><title>
+	نماد اعتماد الکترونیکی کتابراه
+</title><meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=0.1, maximum-scale=1, user-scalable=1" /><meta http-equiv="Content-Type" content="text/html;charset=utf-8" /><meta name="theme-color" content="#649C3D" /><meta name="description" /><meta name="keywords" /><meta name="googlebot" content="index, follow" /><meta name="robots" content="all" /><link rel="start" href="https://www.ketabrah.ir" title="Home" /><link rel="icon" type="image/png" href="/images/favicon.png" /><link href="/css/style.css?v=9.63" type="text/css" rel="Stylesheet" /><link href="/css/page.css?v=8.1" type="text/css" rel="Stylesheet" />
+    <script src="/js/jquery.js" type="text/javascript"></script>
+<link rel="canonical" href="https://www.ketabrah.ir/page/enamad" /></head>
+<body id="body">
+    <div class="content-wrapper">
+        
+
+<div class="dark-overlay"></div>
+
+
+<div id="header1_divHeaderMobile" class="header-mobile">
+    <div class="header-mobile-content center">
+
+        <div class="header-mobile-navigation">
+            <button type="button" class="hamburger hamburger--slider" onclick="VisibleMobileNavigationMenu()">
+                <span class="hamburger-box">
+                    <span class="hamburger-inner"></span>
+                </span>
+            </button>
+        </div>
+
+        <button type="button" class="header-mobile-search" onclick="ToggleMobileSearch()">
+            <img src="/images/ketabrah.png" />
+            <span>جستجو در</span>
+            <svg style="width: 20px; height: 20px">
+                <use xlink:href="/images/svg/icons.svg?1#Search"></use></svg>
+        </button>
+
+        <div id="header1_divHeaderMobileAccount" class="header-mobile-account"><a href="/users/signin"><svg style="width:20px; height:20px"><use xlink:href="/images/svg/icons.svg?1.002#AccountProfilePerson"></use></svg></a></div>
+
+    </div>
+
+    <div class="mobile-navigation-container center">
+        <div class="mobile-navigation">
+
+            <ul>
+                <li>
+                    <a href="/apps" target="_blank">
+                        <img src = "/images/svg/ketabrah-launcher.svg" alt="" style="width: 20px; height: 20px"/>
+                        <span>نصب اپلیکیشن کتابراه</span>
+                        <svg style="width: 14px; height: 14px;"><use xlink:href="/images/svg/icons.svg?1#ArrowLeft"></use></svg>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="/categories">
+                        <svg style="width: 20px; height: 20px"><use xlink:href="/images/svg/icons.svg?1#BmnCategory"></use></svg>
+                        <span>دسته‌بندی کتاب‌ها</span>
+                        <svg style="width: 14px; height: 14px;"><use xlink:href="/images/svg/icons.svg?1#ArrowLeft"></use></svg>
+                    </a>
+                </li>                
+
+                
+                
+                <li>
+                    <a href="/page/help">
+                        <svg style="width: 20px; height: 20px"><use xlink:href="/images/svg/icons.svg?1#Help"></use></svg>
+                        <span>راهنمایی و پشتیبانی کاربران</span>
+                        <svg style="width: 14px; height: 14px;"><use xlink:href="/images/svg/icons.svg?1#ArrowLeft"></use></svg>
+                    </a>
+                </li>
+                
+                <li>
+                    <a href="/page/electronic-publishing">
+                        <svg style="width: 20px; height: 20px"><use xlink:href="/images/svg/icons.svg?1#ElectronicPublishing"></use></svg>
+                        <span>نشر الکترونیک و انتشار کتاب</span>
+                        <svg style="width: 14px; height: 14px;"><use xlink:href="/images/svg/icons.svg?1#ArrowLeft"></use></svg>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="/page/terms">
+                        <svg style="width: 20px; height: 20px"><use xlink:href="/images/svg/icons.svg?1#TermsOfUse"></use></svg>
+                        <span>شرایط استفاده</span>
+                        <svg style="width: 14px; height: 14px;"><use xlink:href="/images/svg/icons.svg?1#ArrowLeft"></use></svg>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="/page/support">
+                        <svg style="width: 20px; height: 20px"><use xlink:href="/images/svg/icons.svg?1#ContactUs"></use></svg>
+                        <span>تماس با ما</span>
+                        <svg style="width: 14px; height: 14px;"><use xlink:href="/images/svg/icons.svg?1#ArrowLeft"></use></svg>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="https://www.instagram.com/ketabrah" target="_blank">
+                        <svg style="width: 20px; height: 20px"><use xlink:href="/images/svg/icons.svg?1#InstagramIcon"></use></svg>
+                        <span>اینستاگرام کتابراه</span>
+                        <svg style="width: 14px; height: 14px;"><use xlink:href="/images/svg/icons.svg?1#ArrowLeft"></use></svg>
+                    </a>
+                </li>
+
+            </ul>
+
+        </div>
+    </div>
+
+    <div id="header1_divMobileTabItems" class="header-mobile-tab-items"></div>
+</div>
+
+<div class="mobile-search-container">
+    <div class="mobile-search-header center">
+        <div class="mobile-search-input-container">
+            <button type="button" class="clear btn-clear-search" id="btnClearSearchInput">
+                <svg style="width: 20px; height: 20px">
+                    <use xlink:href="/images/svg/icons.svg?1#Close"></use></svg>
+            </button>
+            <input type="text" id="txtMobileSearch" placeholder="جستجو کتاب، نویسنده، ناشر" />
+        </div>
+        <button type="button" class="back" onclick="ToggleMobileSearch()">
+            <svg style="width: 20px; height: 20px">
+                <use xlink:href="/images/svg/icons.svg?1#ArrowBackNavigation"></use></svg>
+        </button>
+    </div>
+    <div class="mobile-search-result">
+        <div class="main-search-results">
+            <div class="search-result" id="divMobileMainSearchResults"></div>
+            <div class="search-history group"></div>
+            <div class="trending-categories group">
+                <div style="display: flex;align-items: center; align-content: center;min-height:160px">
+                    <div class="spinner small-spinner"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="header-desktop">
+
+    <div class="header-desktop-top center">
+
+        <div id="header1_divHeaderDesctopAccount" class="header-desktop-account-container"><a href="/users/signin" class="header-account-signin"><svg style="width:20px; height:20px"><use xlink:href="/images/svg/icons.svg?1.002#AccountProfilePerson"></use></svg><span style="margin-right:5px">ورود / ثبت نام</span></a></div>
+
+        <div class="header-desktop-search-container">
+
+            <div class="header-desktop-search-input-container">
+                <button type="button" class="search-button" id="btnDesktopSearch">
+                    <svg style="width: 24px; height: 24px">
+                        <use xlink:href="/images/svg/icons.svg?1#Search"></use></svg>
+                </button>
+                <input type="text" id="txtDesktopSearch" autocomplete="off" placeholder="جستجو کتاب، نویسنده، ناشر" />
+                <button type="button" class="clear btn-clear-search">
+                    <svg style="width: 20px; height: 20px; margin-left: 5px;">
+                        <use xlink:href="/images/svg/icons.svg?1#Close"></use></svg>
+                </button>
+            </div>
+
+            <div class="desktop-search-result-container ">
+                <div class="search-result-border-top"></div>
+                <div class="desktop-search-result-content main-search-results">
+                    <div class="search-result" id="divDesktopMainSearchResults"></div>
+                    <div class="search-history group" id="divSearchHistory"></div>
+                    <div class="trending-categories group">
+                        <div style="display: flex;align-items: center; align-content: center;min-height:160px">
+                            <div class="spinner small-spinner"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="header-desktop-logo-container">
+            <a href="/">
+                <img src="/images/logo-400.png" />
+            </a>
+        </div>
+    </div>
+    <div class="header-desktop-bottom center">
+
+        <div class="left">
+            <div class="download-app">
+                <a href="/apps" target="_blank">اپلیکیشن کتابراه</a>
+            </div>
+
+        </div>
+        <div class="right">
+
+            <div class="navigation-bar">
+                
+                <div class="navigation-bar-item">
+                    <a href="/" class="navigation-bar-item-button">
+                        <svg style="width: 20px; height: 20px; margin-left: 5px;">
+                            <use xlink:href="/images/svg/icons.svg?1#Home"></use></svg>
+                        <span>خانه</span>
+                    </a>
+                </div>
+
+                <div class="navigation-bar-item with-dropdown">
+                    <a href="/books" class="navigation-bar-item-button">
+                        <svg style="width: 20px; height: 20px; margin-left: 5px;">
+                            <use xlink:href="/images/svg/icons.svg?1#Ebook"></use></svg>
+                        <span>کتاب الکترونیک</span>
+                    </a>
+                    <div class="dropdown-menu">
+                        <div class="dropdown-menu-content"><div class="col"><a href="/books/کتاب-ادبیات" class="dropdown-menu-headline" target="_blank">ادبیات <svg style="width:16px; height:16px"><use xlink:href="/images/svg/icons.svg?1.002#ArrowLeftForLink"></use></svg></a><div class="col-list"><ul><li><a href="/books/کتاب-ادبیات-پارسی" >ادبیات پارسی</a></li><li><a href="/books/کتاب-ادبیات-جهان" >ادبیات جهان</a></li><li><a href="/books/کتاب-زندگینامه-خاطرات" >زندگی‌نامه و خاطرات</a></li><li><a href="/books/کتاب-شعر-پارسی" >شعر پارسی</a></li><li><a href="/books/کتاب-نگارش-نویسندگی" >نگارش و نویسندگی</a></li><li><a href="/books/کتاب-سفرنامه" >سفرنامه</a></li></ul></div><a href="/books/کتاب-داستان-رمان" class="dropdown-menu-headline" target="_blank">داستان و رمان <svg style="width:16px; height:16px"><use xlink:href="/images/svg/icons.svg?1.002#ArrowLeftForLink"></use></svg></a><div class="col-list"><ul><li><a href="/books/کتاب-داستان-رمان-ایرانی" >داستان و رمان ایرانی</a></li><li><a href="/books/کتاب-داستان-رمان-خارجی" >داستان و رمان خارجی</a></li></ul></div></div><div class="col"><a href="/books/کتاب-اقتصاد-مدیریت" class="dropdown-menu-headline" target="_blank">اقتصاد و مدیریت <svg style="width:16px; height:16px"><use xlink:href="/images/svg/icons.svg?1.002#ArrowLeftForLink"></use></svg></a><div class="col-list"><ul><li><a href="/books/کتاب-بازاریابی-فروش" >بازاریابی و فروش</a></li><li><a href="/books/کتاب-مدیریت-رهبری" >مدیریت و رهبری</a></li><li><a href="/books/کتاب-کارآفرینی" >کارآفرینی</a></li><li><a href="/books/کتاب-آموزش-سرمایه-گذاری-بورس-فارکس" >سرمایه گذاری و بورس</a></li><li><a href="/books/کتاب-اقتصاد" >اقتصاد</a></li></ul></div><a href="/books/کتاب-روانشناسی" class="dropdown-menu-headline" target="_blank">روانشناسی <svg style="width:16px; height:16px"><use xlink:href="/images/svg/icons.svg?1.002#ArrowLeftForLink"></use></svg></a><div class="col-list"><ul><li><a href="/books/کتاب-موفقیت-خودسازی" >موفقیت و خودسازی</a></li><li><a href="/books/کتاب-خانواده-روابط" >خانواده و روابط</a></li><li><a href="/books/کتاب-ارتباطات-روابط-عمومی" >ارتباطات</a></li><li><a href="/books/کتاب-روانشناسی-بزرگسالان" >بزرگسال</a></li><li><a href="/books/کتاب-روانشناسی-کودک-نوجوان" >کودک و نوجوان</a></li></ul></div></div><div class="col"><a href="/books/کتاب-تاریخی" class="dropdown-menu-headline" target="_blank">تاریخ <svg style="width:16px; height:16px"><use xlink:href="/images/svg/icons.svg?1.002#ArrowLeftForLink"></use></svg></a><div class="col-list"><ul><li><a href="/books/کتاب-تاریخ-ایران" >ایران</a></li><li><a href="/books/کتاب-تاریخ-جهان" >جهان</a></li><li><a href="/books/کتاب-تاریخ-اسلام" >اسلام</a></li></ul></div><a href="/books/کتاب-کودک" class="dropdown-menu-headline" target="_blank">کودک <svg style="width:16px; height:16px"><use xlink:href="/images/svg/icons.svg?1.002#ArrowLeftForLink"></use></svg></a><div class="col-list"><ul><li><a href="/books/کتاب-داستان-کودک" >داستان</a></li><li><a href="/books/کتاب-شعر-کودک" >شعر</a></li><li><a href="/books/کتاب-علمی-آموزشی-کودک" >علمی و آموزشی</a></li><li><a href="/books/کتاب-آموزش-زبان-کودک" >آموزش زبان</a></li></ul></div><a href="/books/کتاب-نوجوان" class="dropdown-menu-headline" target="_blank">نوجوان <svg style="width:16px; height:16px"><use xlink:href="/images/svg/icons.svg?1.002#ArrowLeftForLink"></use></svg></a><div class="col-list"><ul><li><a href="/books/کتاب-داستان-رمان-نوجوان" >داستان و رمان</a></li><li><a href="/books/کتاب-علمی-آموزشی-نوجوان" >علمی و آموزشی</a></li></ul></div></div><div class="col"><a href="/books/کتاب-آموزش-زبان" class="dropdown-menu-headline" target="_blank">آموزش زبان <svg style="width:16px; height:16px"><use xlink:href="/images/svg/icons.svg?1.002#ArrowLeftForLink"></use></svg></a><div class="col-list"><ul><li><a href="/books/کتاب-آموزش-زبان-انگلیسی" >انگلیسی</a></li><li><a href="/books/کتاب-زبان-آلمانی" >آلمانی</a></li><li><a href="/books/کتاب-چند-زبانه" >چند زبانه</a></li></ul></div><a href="/books/کتاب-سلامتی-بهداشت" class="dropdown-menu-headline" target="_blank">سلامتی و بهداشت <svg style="width:16px; height:16px"><use xlink:href="/images/svg/icons.svg?1.002#ArrowLeftForLink"></use></svg></a><div class="col-list"><ul><li><a href="/books/کتاب-تغذیه-رژیم-تناسب-اندام" >تغذیه، رژیم و تناسب اندام</a></li></ul></div><a href="/books/کتاب-درسی-کمک-آموزشی" class="dropdown-menu-headline" target="_blank">درسی و کمک آموزشی <svg style="width:16px; height:16px"><use xlink:href="/images/svg/icons.svg?1.002#ArrowLeftForLink"></use></svg></a><div class="col-list"><ul><li><a href="/books/کتاب-کمک-آموزشی-دبستان" >دبستان</a></li><li><a href="/books/کتاب-کمک-آموزشی-متوسطه-اول" >متوسطه اول</a></li><li><a href="/books/کتاب-کمک-آموزشی-متوسطه-دوم" >متوسطه دوم</a></li><li><a href="/books/کتاب-آزمون-استخدامی" >استخدامی</a></li></ul></div></div><div class="col"><a href="/books/کتاب-علوم-کامپیوتر" class="dropdown-menu-headline" target="_blank">کامپیوتر <svg style="width:16px; height:16px"><use xlink:href="/images/svg/icons.svg?1.002#ArrowLeftForLink"></use></svg></a><br /><a href="/books/کتاب-حقوق" class="dropdown-menu-headline" target="_blank">حقوق <svg style="width:16px; height:16px"><use xlink:href="/images/svg/icons.svg?1.002#ArrowLeftForLink"></use></svg></a><br /><a href="/books/کتاب-علمی" class="dropdown-menu-headline" target="_blank">علوم <svg style="width:16px; height:16px"><use xlink:href="/images/svg/icons.svg?1.002#ArrowLeftForLink"></use></svg></a><br /><a href="/books/کتاب-عمومی" class="dropdown-menu-headline" target="_blank">عمومی <svg style="width:16px; height:16px"><use xlink:href="/images/svg/icons.svg?1.002#ArrowLeftForLink"></use></svg></a><br /><a href="/books/کتاب-هنری" class="dropdown-menu-headline" target="_blank">هنری <svg style="width:16px; height:16px"><use xlink:href="/images/svg/icons.svg?1.002#ArrowLeftForLink"></use></svg></a><br /><a href="/books/کتاب-دینی-مذهبی" class="dropdown-menu-headline" target="_blank">دین و آیین <svg style="width:16px; height:16px"><use xlink:href="/images/svg/icons.svg?1.002#ArrowLeftForLink"></use></svg></a><br /><a href="/books/کتاب-انقلاب-دفاع-مقدس" class="dropdown-menu-headline" target="_blank">انقلاب و دفاع مقدس <svg style="width:16px; height:16px"><use xlink:href="/images/svg/icons.svg?1.002#ArrowLeftForLink"></use></svg></a><br /><a href="/books/کتاب-فنی-حرفه-ای" class="dropdown-menu-headline" target="_blank">فنی حرفه‌ای <svg style="width:16px; height:16px"><use xlink:href="/images/svg/icons.svg?1.002#ArrowLeftForLink"></use></svg></a><br /><a href="/books/کتاب-کمیک-رمان-مصور" class="dropdown-menu-headline" target="_blank">کمیک <svg style="width:16px; height:16px"><use xlink:href="/images/svg/icons.svg?1.002#ArrowLeftForLink"></use></svg></a><br /><a href="/books/کتاب-فنی-مهندسی" class="dropdown-menu-headline" target="_blank">فنی و مهندسی <svg style="width:16px; height:16px"><use xlink:href="/images/svg/icons.svg?1.002#ArrowLeftForLink"></use></svg></a><br /><a href="/books/کتاب-مجله" class="dropdown-menu-headline" target="_blank">مجله <svg style="width:16px; height:16px"><use xlink:href="/images/svg/icons.svg?1.002#ArrowLeftForLink"></use></svg></a><br /></div></div>
+
+                        
+                    </div>
+                </div>
+
+                <div class="navigation-bar-item with-dropdown">
+                    <a href="/audiobooks" class="navigation-bar-item-button">
+                        <svg style="width: 20px; height: 20px; margin-left: 5px;">
+                            <use xlink:href="/images/svg/icons.svg?1#Headphones"></use></svg>
+                        <span>کتاب صوتی</span>
+                    </a>
+                    <div class="dropdown-menu">
+                        <div class="dropdown-menu-content"><div class="col"><a href="/audiobooks/کتاب-صوتی-ادبیات" class="dropdown-menu-headline" target="_blank">ادبیات <svg style="width:16px; height:16px"><use xlink:href="/images/svg/icons.svg?1.002#ArrowLeftForLink"></use></svg></a><div class="col-list"><ul><li><a href="/audiobooks/کتاب-صوتی-ادبیات-پارسی" >ادبیات پارسی</a></li><li><a href="/audiobooks/کتاب-صوتی-ادبیات-جهان" >ادبیات جهان</a></li><li><a href="/audiobooks/کتاب-صوتی-زندگینامه-خاطرات" >زندگی‌نامه و خاطرات</a></li><li><a href="/audiobooks/کتاب-صوتی-شعر-پارسی" >شعر پارسی</a></li><li><a href="/audiobooks/کتاب-صوتی-نگارش-نویسندگی" >نگارش و نویسندگی</a></li><li><a href="/audiobooks/کتاب-صوتی-سفرنامه" >سفرنامه</a></li></ul></div><a href="/audiobooks/کتاب-صوتی-داستان-رمان" class="dropdown-menu-headline" target="_blank">داستان و رمان <svg style="width:16px; height:16px"><use xlink:href="/images/svg/icons.svg?1.002#ArrowLeftForLink"></use></svg></a><div class="col-list"><ul><li><a href="/audiobooks/کتاب-صوتی-داستان-رمان-ایرانی" >داستان و رمان ایرانی</a></li><li><a href="/audiobooks/کتاب-صوتی-داستان-رمان-خارجی" >داستان و رمان خارجی</a></li></ul></div></div><div class="col"><a href="/audiobooks/کتاب-صوتی-اقتصاد-مدیریت" class="dropdown-menu-headline" target="_blank">اقتصاد و مدیریت <svg style="width:16px; height:16px"><use xlink:href="/images/svg/icons.svg?1.002#ArrowLeftForLink"></use></svg></a><div class="col-list"><ul><li><a href="/audiobooks/کتاب-صوتی-بازاریابی-فروش" >بازاریابی و فروش</a></li><li><a href="/audiobooks/کتاب-صوتی-مدیریت-رهبری" >مدیریت و رهبری</a></li><li><a href="/audiobooks/کتاب-صوتی-کارآفرینی" >کارآفرینی</a></li><li><a href="/audiobooks/کتاب-صوتی-آموزش-سرمایه-گذاری-بورس-فارکس" >سرمایه گذاری و بورس</a></li><li><a href="/audiobooks/کتاب-صوتی-اقتصاد" >اقتصاد</a></li></ul></div><a href="/audiobooks/کتاب-صوتی-روانشناسی" class="dropdown-menu-headline" target="_blank">روانشناسی <svg style="width:16px; height:16px"><use xlink:href="/images/svg/icons.svg?1.002#ArrowLeftForLink"></use></svg></a><div class="col-list"><ul><li><a href="/audiobooks/کتاب-صوتی-موفقیت-خودسازی" >موفقیت و خودسازی</a></li><li><a href="/audiobooks/کتاب-صوتی-خانواده-روابط" >خانواده و روابط</a></li><li><a href="/audiobooks/کتاب-صوتی-ارتباطات-روابط-عمومی" >ارتباطات</a></li><li><a href="/audiobooks/کتاب-صوتی-روانشناسی-بزرگسالان" >بزرگسال</a></li><li><a href="/audiobooks/کتاب-صوتی-روانشناسی-کودک-نوجوان" >کودک و نوجوان</a></li></ul></div></div><div class="col"><a href="/audiobooks/کتاب-صوتی-تاریخی" class="dropdown-menu-headline" target="_blank">تاریخ <svg style="width:16px; height:16px"><use xlink:href="/images/svg/icons.svg?1.002#ArrowLeftForLink"></use></svg></a><div class="col-list"><ul><li><a href="/audiobooks/کتاب-صوتی-تاریخ-ایران" >ایران</a></li><li><a href="/audiobooks/کتاب-صوتی-تاریخ-جهان" >جهان</a></li><li><a href="/audiobooks/کتاب-صوتی-تاریخ-اسلام" >اسلام</a></li></ul></div><a href="/audiobooks/کتاب-صوتی-کودک" class="dropdown-menu-headline" target="_blank">کودک <svg style="width:16px; height:16px"><use xlink:href="/images/svg/icons.svg?1.002#ArrowLeftForLink"></use></svg></a><div class="col-list"><ul><li><a href="/audiobooks/کتاب-صوتی-داستان-کودک" >داستان</a></li><li><a href="/audiobooks/کتاب-صوتی-شعر-کودک" >شعر</a></li><li><a href="/audiobooks/کتاب-صوتی-علمی-آموزشی-کودک" >علمی و آموزشی</a></li><li><a href="/audiobooks/کتاب-صوتی-آموزش-زبان-کودک" >آموزش زبان</a></li></ul></div><a href="/audiobooks/کتاب-صوتی-نوجوان" class="dropdown-menu-headline" target="_blank">نوجوان <svg style="width:16px; height:16px"><use xlink:href="/images/svg/icons.svg?1.002#ArrowLeftForLink"></use></svg></a><div class="col-list"><ul><li><a href="/audiobooks/کتاب-صوتی-داستان-رمان-نوجوان" >داستان و رمان</a></li><li><a href="/audiobooks/کتاب-صوتی-علمی-آموزشی-نوجوان" >علمی و آموزشی</a></li></ul></div></div><div class="col"><a href="/audiobooks/کتاب-صوتی-آموزش-زبان" class="dropdown-menu-headline" target="_blank">آموزش زبان <svg style="width:16px; height:16px"><use xlink:href="/images/svg/icons.svg?1.002#ArrowLeftForLink"></use></svg></a><div class="col-list"><ul><li><a href="/audiobooks/کتاب-صوتی-آموزش-زبان-انگلیسی" >انگلیسی</a></li><li><a href="/audiobooks/کتاب-صوتی-زبان-آلمانی" >آلمانی</a></li><li><a href="/audiobooks/کتاب-صوتی-چند-زبانه" >چند زبانه</a></li></ul></div><a href="/audiobooks/کتاب-صوتی-سلامتی-بهداشت" class="dropdown-menu-headline" target="_blank">سلامتی و بهداشت <svg style="width:16px; height:16px"><use xlink:href="/images/svg/icons.svg?1.002#ArrowLeftForLink"></use></svg></a><div class="col-list"><ul><li><a href="/audiobooks/کتاب-صوتی-تغذیه-رژیم-تناسب-اندام" >تغذیه، رژیم و تناسب اندام</a></li></ul></div><a href="/audiobooks/کتاب-صوتی-درسی-کمک-آموزشی" class="dropdown-menu-headline" target="_blank">درسی و کمک آموزشی <svg style="width:16px; height:16px"><use xlink:href="/images/svg/icons.svg?1.002#ArrowLeftForLink"></use></svg></a><div class="col-list"><ul><li><a href="/audiobooks/کتاب-صوتی-کمک-آموزشی-دبستان" >دبستان</a></li><li><a href="/audiobooks/کتاب-صوتی-کمک-آموزشی-متوسطه-اول" >متوسطه اول</a></li><li><a href="/audiobooks/کتاب-صوتی-کمک-آموزشی-متوسطه-دوم" >متوسطه دوم</a></li><li><a href="/audiobooks/کتاب-صوتی-آزمون-استخدامی" >استخدامی</a></li></ul></div></div><div class="col"><a href="/audiobooks/کتاب-صوتی-علوم-کامپیوتر" class="dropdown-menu-headline" target="_blank">کامپیوتر <svg style="width:16px; height:16px"><use xlink:href="/images/svg/icons.svg?1.002#ArrowLeftForLink"></use></svg></a><br /><a href="/audiobooks/کتاب-صوتی-حقوق" class="dropdown-menu-headline" target="_blank">حقوق <svg style="width:16px; height:16px"><use xlink:href="/images/svg/icons.svg?1.002#ArrowLeftForLink"></use></svg></a><br /><a href="/audiobooks/کتاب-صوتی-علمی" class="dropdown-menu-headline" target="_blank">علوم <svg style="width:16px; height:16px"><use xlink:href="/images/svg/icons.svg?1.002#ArrowLeftForLink"></use></svg></a><br /><a href="/audiobooks/کتاب-صوتی-عمومی" class="dropdown-menu-headline" target="_blank">عمومی <svg style="width:16px; height:16px"><use xlink:href="/images/svg/icons.svg?1.002#ArrowLeftForLink"></use></svg></a><br /><a href="/audiobooks/کتاب-صوتی-هنری" class="dropdown-menu-headline" target="_blank">هنری <svg style="width:16px; height:16px"><use xlink:href="/images/svg/icons.svg?1.002#ArrowLeftForLink"></use></svg></a><br /><a href="/audiobooks/کتاب-صوتی-دینی-مذهبی" class="dropdown-menu-headline" target="_blank">دین و آیین <svg style="width:16px; height:16px"><use xlink:href="/images/svg/icons.svg?1.002#ArrowLeftForLink"></use></svg></a><br /><a href="/audiobooks/کتاب-صوتی-انقلاب-دفاع-مقدس" class="dropdown-menu-headline" target="_blank">انقلاب و دفاع مقدس <svg style="width:16px; height:16px"><use xlink:href="/images/svg/icons.svg?1.002#ArrowLeftForLink"></use></svg></a><br /><a href="/audiobooks/کتاب-صوتی-فنی-حرفه-ای" class="dropdown-menu-headline" target="_blank">فنی حرفه‌ای <svg style="width:16px; height:16px"><use xlink:href="/images/svg/icons.svg?1.002#ArrowLeftForLink"></use></svg></a><br /><a href="/audiobooks/کتاب-صوتی-کمیک-رمان-مصور" class="dropdown-menu-headline" target="_blank">کمیک <svg style="width:16px; height:16px"><use xlink:href="/images/svg/icons.svg?1.002#ArrowLeftForLink"></use></svg></a><br /><a href="/audiobooks/کتاب-صوتی-فنی-مهندسی" class="dropdown-menu-headline" target="_blank">فنی و مهندسی <svg style="width:16px; height:16px"><use xlink:href="/images/svg/icons.svg?1.002#ArrowLeftForLink"></use></svg></a><br /><a href="/audiobooks/کتاب-صوتی-مجله" class="dropdown-menu-headline" target="_blank">مجله <svg style="width:16px; height:16px"><use xlink:href="/images/svg/icons.svg?1.002#ArrowLeftForLink"></use></svg></a><br /></div></div>
+
+                        
+
+                    </div>
+                </div>
+
+                <div class="navigation-bar-item">
+                    <a href="/free-books-audiobooks" class="navigation-bar-item-button">
+                        <span>کتاب‌های رایگان</span>
+                    </a>
+                </div>
+                <div class="navigation-bar-item">
+                    <a href="/page/help" class="navigation-bar-item-button">
+                        <span>پشتیبانی</span>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="header-blank-space" ></div>
+
+<script type="text/javascript" src="/js/search.js?v=1.1"></script>
+
+        
+        <div id="divCenter" class="center">
+            <form method="post" action="/page/enamad" id="form1">
+<div class="aspNetHidden">
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="4ytv19iNyJ7kPBlVHv42+9exPydSyWqwzZfvTX8eP1oKbqnFJQVekUrL5XLxhA3oOiLUqDql8KkaBcB0+P5zWkQEzn6hmxQKlye2W3rKGQE5hRhEZWpP6xmgc6yMIr69zCwSJg5B2NsoWt17l1qCLVtIllT0sqHVz3olri0Ak+yIMewdWSkng3IFfHkE4TnsMWgZiQ9AzZeLcCmAoGmRqS3nr7nBB7toy7ui2xOjvbrBl2aBcyY9eTIRdAVXpFk2ygfVZ/AdaJKuzn+9biDniFJIdA/6+dKW+9Rpnc5huoxIdTlfAXN7+HnS6PDgYCPKHhI+RK3wF82GRfVwiQ8+Pl39avQ41ujdWEBLiqAJsI5IWE8UMUUeoViyTytRKs4RCkT6wYZ0+ef153muN7FgJ/FJq+uIbkZFjQBUDzHX5XoAA1UhRnSnEZtQ5Xu78gxd8JSmyB5PSzZwIrMrqTHEPMsmTlK62LPEUUwnJhXOqw9EboBo6WtDQxb+ju/V4OXJhklrrRU0FaOo7eCdPxZOCO9qeYD/KVrNJshT1M+/KdGgmujkdaN7J5RapCnHUZhWtqImJedH38cRUKpRsBkd6YEc9FonRFcP58aO1vjVP7Svjrq1CYNJFyyUvyvGFjrF2tpnx4ZziHTmid9k909h1P7IgziAH3j/xksFqeoJgyC/QfWfi8Qy4+hplMPgTgRbbF4syMBPRNM1mNoTrcJz/Yb264XIihcOhJAQ0cW17p1tgR2BWtVwpA/5aSjCT1L7EjUs2fSEBX/nl6srfvnWdi3v+c9ZRESA5ilIpU5VdU4RUF2+qevg0wr8XW5B2fBP0uuJHyau/lrlCAo/n0Vil9t85JfN0bW63D94m5chBLTezF8xkLLQSlpiTSxTXyUuhbWh/mULEjlsFM3/h4cVR2Dj6pDwqH2MfIIDPkB8WtVf33PBdR4jr80a6ASKhKbKyBO90iBcHeZettni5WFC0ClnYa0ARcli9oUB1qLglRZ1hugxiNx84krDdCLnnucX0UzbsHRMyQn7/wf7yVa1SrsnhE5DTlBTh6eQNg2qOCTBNH9/JPrszbNpC8MlGyWQzgPOJ4Nh4heQH4aMGV+Plg0pcM/GO13rWMwUNY3F5QtE4985D+rLNsLObWON6OOvcmyxzjCOoC3i6BlGqBeSpGAgY21A44iuzfvlhxpWoCwViY4qDB/asquOZm82P/KdJJZeEkg8iLdyHCWgA7+hODjqU1jODARpq5144JyNTNqG8ILZcQlGqUsw1a/lx8nmvCtLK4Oy/QiXE/vegr+E8f/nLeZidpYKhxSoIICMkjk00RjT7t7iC8WgXIprIca90xWHlEYy64cZvpyvnSqshzUenFvEeGQyTCa64H/uDDm16vj56SqeFpmSzymkyUq2p9XmQVIhrb/a5/E1BgaNJUAdF1ZdtqOIoa5/ecVo1qSZXDyOjuWWTyb4pYhKvaEq20NeS+n4UwTsYUVWeNJPwK07Y+KZ4MKPik7LEwLpMiUcTqX1AHRQFtqKCC5l8SBNQ5WZe6y8VwUnKca/DfKojGIphJ/8MPCrVyM32ElP8mXeNo6YbO5txSWQaZug2ZvCkdySCOiHiFVyFmNdc+Yk4yhGvTjyxXYgMCwimEv6P1uj8IbyhuuOSHwNe9I7bsCCG+0s/S9Y4L+guEn33lQoGFQm6iFehuw88Wq6q2QHo728XC7AVrqrhGOH0BiuOccPMg9IVuMozOeGw4S8Mx92D94Tb0oMOGyBZqJkSo/mbr/nSALKqblbDgBgz3oo58RIr9m4ACb/LEHap2s3niXTJ7/GUNv18XCUeWGBvicmOPr+M5LUDAwVfvJ1zaBpPsB/kt405FtcUkZ88+dXQAzuoXUVpvoPsK56WyewlEu3PjGXg7jQKx3Xwx0axpScMM0P8gf4pz8dt4qmMY13oDjKW9FMflbi9at5zIZSSGFHZ+NymkZXrtPA41WnN4jgjuYl1Ns4mHEZqRJySiE4lDe1PWaGzgbrF1yyFel2mOUaEOfIqKer/vsSjur4oPC2yeL7W1Oz0BrwE6y/1TGWbS4oAMOT9l2Of8dTwT4ogPAgh7qNb/ITJ7/GU9QStiWK3KxKHr6eAm/b8NkqcbucB7koQ+LG+mLHvqecEOw1CjoxsNTN0U5MnzH+gpOcFboCUM/jE9ilQYDQeoIS2ng8OPjfDgwwKGccPq1wyRZOtv0QvhHf/xt/bQOQ91FRD+Ul18oRlDIJVXpjGbyT/imIxXmw2OzSLMfpTvRhDBwDxXf62h8/MJZUMSfhTjM8dcdzzC+mev6BhEwVlZGJx1XI1C/mLfysapasj/Fen8CpCYB+98nCHQrCFWq6i7X/CWK3HGMz9og6hpAapdIyZCYvXRAqw/jmLj+HSot79hhC62fN/Z57FHkQj6PpD9jPQQt+Txau35u92uwMy6Njd7/M4StO3cw/zSSiAYF4mPado7+l1KWGRNKseMO1ZFdfhBdOQ4E2ZD6EcGgWMHGrp99Q3MMh7yj9AEbjH5LqHTvcaKxbCqkyj/joavLEm0bLNNlrZH8hoamH+urBND9BwH5gvbHkKzbFqYoMzL8Y05fTdDuIZnj8niFm9FEuBNNIqs6b4WC4l8tUdwXHfswDQ8He7wiNDIoZBAcvkP8ZHVdKsw0gDaae+NikKK7naIgZW6ZuWGmR0WOuXLkDa3WEsxxydLCZV4vi/Vh8T4mv8nIm3nk+g4t1DL3ljUqAkp42CBQEwCMQKcHOcWs58iDuKzlKdHpwqShbzDx43Iwwp55g4YHlCrRUgjLhe8K2XMVVAl1ZEAr5H0nFzTFvqpDeec1Qn9S0C/RY7xGCDpYoVf2Mz5fWhKS/qoJFfr1efGaQy3VgGYK3+o4QZUA7DeWP/l+2eX5RgUkgtrgZ5MAHgM58WQobTATy8XywdhqGFexx00i46g4oFvkxlcjA7v8eN78bep19lI35wAJ8HSRvE7XLfLHcTbUDEB9k4FFxFlHNSyL5t3AdLZrnMDvKgJ1UtPCxHOm7WrLdhAg0OopbC/UMczwMlLvupGs2bUKavqM0kfpJ8PUbR55TEBMOp0ufGj8PK19Lxd6EZbijkr35JbwIkKPi+I+LpXuAB7TBmACe/eDuxJsU9uS/7dmj5aErGcuEWlGVk+hH7E+8+AFS//wfUAcwflnisJFmWMy7ZTvb/wQbWuMuzvCraUv50+3yy4LoStpc4LCgL4WOaNlxhVGpA5mKRWamTh/0Jmil4PZTod3Hrl546KWf57UP1okIK6XPDcbWJIMy2KJE6z/o+LIYjn3pfR6m9qJQOFl5dKUOMKWbEMpGs4ZKNuvaCsb8eCtkVaBtAbjaxVgJd7SvtYObesyfr3kwa5mlg03c5HGODs5VT5IeUhOeo05hHWQiWfRpmYl4UJQJwxg=" />
+</div>
+
+<div class="aspNetHidden">
+
+	<input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="3989C74E" />
+</div>
+                
+                
+                
+                
+                <div id="divPageContentBlock" class="page-content-block">
+                    <div id="PageContent">
+                        <div class="page-title" style="margin-top: 12px">
+                            <div id="Breadcrump"></div>
+                            <h1 id="PageTitle">نماد اعتماد الکترونیکی کتابراه</h1>
+                            <div id="PageTitleDescription" class="pt-des"></div>
+                        </div>
+                        <div id="TextPageContent">    
+<p>
+	مرکز توسعه تجارت الکترونیکی، با اعطای نماد اعتماد الکترونیکی هویت صاحب و محل فعالیت کسب و کارهای اینترنتی را احراز می&zwnj;نماید.</p>
+<p>
+	برای مشاهده&nbsp;نماد اعتماد الکترونیکی کتابراه بر روی آن (عکس پایین) کلیک کنید.</p>
+<p>
+	&nbsp;</p>
+
+
+<div style="text-align: center">
+
+<a target="_blank" rel="origin" href="https://trustseal.enamad.ir/?id=111162&amp;Code=IiAtUfnbK8SVznG8s9el">
+<img src="https://Trustseal.eNamad.ir/logo.aspx?id=111162&amp;Code=IiAtUfnbK8SVznG8s9el" alt="" style="cursor: pointer" id="IiAtUfnbK8SVznG8s9el">
+</a>
+</div>
+<div style="padding: 8px; text-align:center">
+ <img id = 'jxlzrgvjnbqergvjfukzrgvj' style = 'cursor:pointer' onclick = 'window.open("https://logo.samandehi.ir/Verify.aspx?id=132363&p=rfthxlaouiwkxlaogvkaxlao", "Popup","toolbar=no, scrollbars=no, location=no, statusbar=no, menubar=no, resizable=0, width=450, height=630, top=30")' alt = 'logo-samandehi' src = 'https://logo.samandehi.ir/logo.aspx?id=132363&p=nbpdqftiodrfqftiwlbqqfti' />
+</div>
+
+<p>
+&nbsp;</p>
+<p>
+&nbsp;</p>
+    </div>
+                    </div>
+                    <div class="c"></div>
+                </div>
+                
+                <div class="c"></div>
+            </form>
+        </div>
+    </div>
+    <script type="text/javascript" src="/js/main.js?v=47"></script>
+    
+    
+    
+<footer class="footer">
+    <div class="center">
+        <div class="footer-links">
+            <a class="footer-link" href="/page/help">راهنما و پشتیبانی</a>
+            <a class="footer-link" href="/publishers/dashboard">پنل ناشران</a>
+            <a class="footer-link" href="/page/electronic-publishing">نشر الکترونیک و انتشار کتاب</a>
+            <a class="footer-link" href="/page/about">درباره ما</a>
+            <a class="footer-link" href="/page/support">تماس با ما</a>
+            <a class="footer-link" href="/page/terms">شرایط استفاده</a>
+
+            <a class="footer-link" href="/page/jobs">فرصت‌های شغلی</a>
+            <a class="footer-link" href="/page/publishers">فهرست ناشران</a>
+            <a class="footer-link" href="/page/authors">فهرست پدیدآورندگان</a>
+
+            <br />
+            
+            <a class="footer-link" href="https://t.me/ketabrah" target="_blank">تلگرام کتابراه</a>
+            <a class="footer-link" href="https://instagram.com/ketabrah" target="_blank">اینستاگرام کتابراه</a>
+        </div>
+        
+            <div class="footer-apps-buttons">
+                <a href="/go/3" class="button-download-apk small">دانلود مستقیم اندروید</a>
+                <a href="/go/62" class="button-download-goole-play small">دانلود از گوگل پلی</a>
+                <a href="/go/72" class="button-download-app-store small">دانلود از اپ استور</a>
+                <a href="/page/book-reader-windows" class="button-download-windows small">دانلود نسخه ویندوز</a>
+            </div>
+            <div class="c"></div>
+        
+
+        <div class="footer-more-details">
+            <div class="footer-more-details-item" style="flex: 100%">
+                <p style="direction: rtl; line-height: 200%">
+                    کتابراه مرجع قانونی <a href="/books">دانلود کتاب الکترونیکی</a>&nbsp;و <a href="/audiobooks">دانلود کتاب صوتی</a>&nbsp;است که امکان دسترسی به هزاران <a href="/">کتاب</a>، رمان، مجله و کتاب صوتی و همچنین <strong>خرید کتاب الکترونیک</strong> از طریق موبایل تبلت و رایانه برای شما فراهم می‌کند. شما با استفاده از کتابراه همیشه و همه جا به کتاب&zwnj;ها و کتابخانه خود دسترسی دارید و می&zwnj;توانید به سادگی از هر فرصتی برای مطالعه استفاده کنید. در کتابراه برای همه سلیقه&zwnj;ها از داستان، رمان و شعر تا روانشناسی، تاریخی، علمی، موفقیت و... کتاب&zwnj;هایی پیدا می شود. همچنین در کتابراه هزاران <strong>کتاب رایگان</strong> نیز قابل دانلود است. اپلیکیشن <strong>کتابخوان </strong>کتابراه برای اندروید، IOS و ویندوز در دسترس است.
+                </p>
+            </div>
+            <div class="footer-more-details-item namad" style="min-width: 100px; text-align: center">
+
+                <a referrerpolicy='origin' target='_blank' href='https://trustseal.enamad.ir/?id=111162&Code=IiAtUfnbK8SVznG8s9el'><img referrerpolicy='origin' src='https://trustseal.enamad.ir/logo.aspx?id=111162&Code=IiAtUfnbK8SVznG8s9el' alt='' style='cursor:pointer' Code='IiAtUfnbK8SVznG8s9el'></a>
+
+
+
+
+            </div>
+            <div class="footer-more-details-item namad" style="min-width: 100px; text-align: center">
+                <a href="/page/enamad" target="_blank" style="display: inline-block">
+                    <img src="/images/enamad2.png" alt="نماد اعتماد الکترونیکی کتابراه">
+                </a>
+            </div>
+        </div>
+    </div>
+</footer>
+<script type="application/ld+json">
+    {
+    "@context": "http://schema.org",
+    "@type": "WebSite",
+    "name" : "کتابراه",
+    "url": "https://www.ketabrah.ir",
+    "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https://www.ketabrah.ir/search?q={search_term_string}",
+    "query-input": "required name=search_term_string"
+    }
+    }
+</script>
+<script type="application/ld+json">
+    {
+    "@context": "http://schema.org",
+    "@type": "Organization",
+    "name" : "کتابراه",
+    "url": "https://www.ketabrah.ir",
+    "logo": "https://www.ketabrah.ir/images/logo-200.png",
+    "sameAs" : [
+    "https://www.instagram.com/ketabrah", "https://telegram.me/ketabrah", "https://twitter.com/ketabrah"
+    ],
+    "address": {
+    "@type": "PostalAddress",
+    "addressCountry": "Iran",
+    "addressRegion": "District 11, Tehran, Tehran Province"
+    }}
+</script>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-W67Q6ER54E"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-W67Q6ER54E');
+</script>
+
+
+
+</body>
+</html>
