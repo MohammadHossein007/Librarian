@@ -25,7 +25,7 @@ class  Book(models.Model):
     description = models.TextField(blank=True)
     author = models.ForeignKey(Author, on_delete=models.SET_NULL, null=True)
     category = models.ForeignKey(Category, on_delete=models.PROTECT, null=True)
-    image = models.ImageField(default='no-image-available-icon-vector.jpg')
+    image = models.ImageField(default='no-image-available-icon-vector.jpg', blank=True)
     placed_at = models.DateField(auto_now=True)
 
     def __str__(self):

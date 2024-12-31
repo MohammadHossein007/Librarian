@@ -6,4 +6,6 @@ def login(request):
 
 
 def main_page(request):
-    return render(request, 'main_index.html')
+    categories = Category.objects.filter(book__isnull=False).distinct()
+    books = Book.objects.all()
+    return render(request, 'main_index.html', {'categories' : categories, 'books' : books})

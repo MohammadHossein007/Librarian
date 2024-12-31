@@ -7,6 +7,19 @@
     <title>Document</title>
     <link rel="stylesheet" href="../../../static/main_css/style.css" />
     <link rel="stylesheet" href="../../../static/font/font.css" />
+    <style>
+      .tarikhi {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        padding: 10px;
+        margin-top: 20px;
+        border: 1px gray solid;
+        border-radius: 1rem;
+      }
+      .book-image{
+        object-fit: contain;
+      }
+    </style>
   </head>
 
   <body>
@@ -28,11 +41,9 @@
             <li onclick="image()" class="second aboutcolor">
               دسته بندی
               <div id="ganr">
-                <a href="#">تاریخی</a>
-                <a href="#">علمی</a>
-                <a href="#">فلسفه و منطق</a>
-                <a href="#">روانشناسی</a>
-                <a href="#">ادبیات </a>
+                {% for category in categories %}
+                <a href="#">{{category.title}}</a>
+                {% endfor %}
               </div>
 
               <img
@@ -118,371 +129,28 @@
     </div>
 
     <div class="main">
+      {% for category in categories %}
       <div>
         <div class="ganr2">
-          <h2><span>کتاب های ادبیات </span></h2>
+          <h2><span>{{category.title}}</span></h2>
           <h2>مشاهده همه</h2>
         </div>
         <div class="tarikhi">
+          {% for book in books %} {% if book.category_id == category.id %}
           <div class="book">
             <div>
-              <img
-                src="./img/خسرو و شیرین .jpg"
-                width="120"
-                height="120"
-                alt=""
-              />
+              <img class="book-image" src="{{ book.image.url }}" width="120" height="120" alt="" />
             </div>
             <div class="info">
-              <h4>کتاب خسرو و شیرین</h4>
-              <h4>پائولو کوئیلو</h4>
-              <h4>ژانر:ادبیات</h4>
+              <h4>{{ book.title }}</h4>
+              <h4>{{ book.author }}</h4>
+              <h4>{{ book.category }}</h4>
             </div>
           </div>
-          <div class="book">
-            <div>
-              <img
-                src="./img/خسرو و شیرین .jpg"
-                width="120"
-                height="120"
-                alt=""
-              />
-            </div>
-            <div class="info">
-              <h4>کتاب خسرو و شیرین</h4>
-              <h4>پائولو کوئیلو</h4>
-              <h4>ژانر:ادبیات</h4>
-            </div>
-          </div>
-          <div class="book">
-            <div>
-              <img
-                src="./img/خسرو و شیرین .jpg"
-                width="120"
-                height="120"
-                alt=""
-              />
-            </div>
-            <div class="info">
-              <h4>کتاب خسرو و شیرین</h4>
-              <h4>پائولو کوئیلو</h4>
-              <h4>ژانر:ادبیات</h4>
-            </div>
-          </div>
-          <div class="book">
-            <div>
-              <img
-                src="./img/خسرو و شیرین .jpg"
-                width="120"
-                height="120"
-                alt=""
-              />
-            </div>
-            <div class="info">
-              <h4>کتاب خسرو و شیرین</h4>
-              <h4>پائولو کوئیلو</h4>
-              <h4>ژانر:ادبیات</h4>
-            </div>
-          </div>
-          <div class="book">
-            <div>
-              <img
-                src="./img/خسرو و شیرین .jpg"
-                width="120"
-                height="120"
-                alt=""
-              />
-            </div>
-            <div class="info">
-              <h4>کتاب خسرو و شیرین</h4>
-              <h4>پائولو کوئیلو</h4>
-              <h4>ژانر:ادبیات</h4>
-            </div>
-          </div>
+          {% endif %} {% endfor %}
         </div>
       </div>
-      <div>
-        <div class="ganr2">
-          <h2><span>کتاب های تاریخی</span></h2>
-          <h2>مشاهده همه</h2>
-        </div>
-        <div class="tarikhi">
-          <div class="book">
-            <div>
-              <img
-                src="./img/تاریخ بیهقی.jpg"
-                width="120"
-                height="120"
-                alt=""
-              />
-            </div>
-            <div class="info">
-              <h4>کتاب تاریخ بیهقی</h4>
-              <h4>ابوالفضل بیهقی</h4>
-              <h4>ژانر:تاریخی</h4>
-            </div>
-          </div>
-          <div class="book">
-            <div>
-              <img
-                src="./img/تاریخ بیهقی.jpg"
-                width="120"
-                height="120"
-                alt=""
-              />
-            </div>
-            <div class="info">
-              <h4>کتاب تاریخ بیهقی</h4>
-              <h4>ابوالفضل بیهقی</h4>
-              <h4>ژانر:تاریخی</h4>
-            </div>
-          </div>
-          <div class="book">
-            <div>
-              <img
-                src="./img/تاریخ بیهقی.jpg"
-                width="120"
-                height="120"
-                alt=""
-              />
-            </div>
-            <div class="info">
-              <h4>کتاب تاریخ بیهقی</h4>
-              <h4>ابوالفضل بیهقی</h4>
-              <h4>ژانر:تاریخی</h4>
-            </div>
-          </div>
-          <div class="book">
-            <div>
-              <img
-                src="./img/تاریخ بیهقی.jpg"
-                width="120"
-                height="120"
-                alt=""
-              />
-            </div>
-            <div class="info">
-              <h4>کتاب تاریخ بیهقی</h4>
-              <h4>ابوالفضل بیهقی</h4>
-              <h4>ژانر:تاریخی</h4>
-            </div>
-          </div>
-          <div class="book">
-            <div>
-              <img
-                src="./img/تاریخ بیهقی.jpg"
-                width="120"
-                height="120"
-                alt=""
-              />
-            </div>
-            <div class="info">
-              <h4>کتاب تاریخ بیهقی</h4>
-              <h4>ابوالفضل بیهقی</h4>
-              <h4>ژانر:تاریخی</h4>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div>
-        <div class="ganr2">
-          <h2><span>کتاب های روان شناسی</span></h2>
-          <h2>مشاهده همه</h2>
-        </div>
-        <div class="tarikhi">
-          <div class="book">
-            <div>
-              <img src="./img/بیشعوری.jpg" width="120" height="120" alt="" />
-            </div>
-            <div class="info">
-              <h4>کتاب بیشعوری</h4>
-              <h4>خاویر کرمنت</h4>
-              <h4>ژانر:روانشناسی</h4>
-            </div>
-          </div>
-          <div class="book">
-            <div>
-              <img src="./img/بیشعوری.jpg" width="120" height="120" alt="" />
-            </div>
-            <div class="info">
-              <h4>کتاب بیشعوری</h4>
-              <h4>خاویر کرمنت</h4>
-              <h4>ژانر:روانشناسی</h4>
-            </div>
-          </div>
-          <div class="book">
-            <div>
-              <img src="./img/بیشعوری.jpg" width="120" height="120" alt="" />
-            </div>
-            <div class="info">
-              <h4>کتاب بیشعوری</h4>
-              <h4>خاویر کرمنت</h4>
-              <h4>ژانر:روانشناسی</h4>
-            </div>
-          </div>
-          <div class="book">
-            <div>
-              <img src="./img/بیشعوری.jpg" width="120" height="120" alt="" />
-            </div>
-            <div class="info">
-              <h4>کتاب بیشعوری</h4>
-              <h4>خاویر کرمنت</h4>
-              <h4>ژانر:روانشناسی</h4>
-            </div>
-          </div>
-          <div class="book">
-            <div>
-              <img src="./img/بیشعوری.jpg" width="120" height="120" alt="" />
-            </div>
-            <div class="info">
-              <h4>کتاب بیشعوری</h4>
-              <h4>خاویر کرمنت</h4>
-              <h4>ژانر:روانشناسی</h4>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div>
-        <div class="ganr2">
-          <h2><span>کتاب های علمی</span></h2>
-          <h2>مشاهده همه</h2>
-        </div>
-        <div class="tarikhi">
-          <div class="book">
-            <div>
-              <img src="./img/book.jpg" width="120" height="120" alt="" />
-            </div>
-            <div class="info">
-              <h4>کتاب سم زدایی دوپامین</h4>
-              <h4>تیبو موریس</h4>
-              <h4>ژانر:علمی</h4>
-            </div>
-          </div>
-          <div class="book">
-            <div>
-              <img src="./img/book.jpg" width="120" height="120" alt="" />
-            </div>
-            <div class="info">
-              <h4>کتاب سم زدایی دوپامین</h4>
-              <h4>تیبو موریس</h4>
-              <h4>ژانر:علمی</h4>
-            </div>
-          </div>
-          <div class="book">
-            <div>
-              <img src="./img/book.jpg" width="120" height="120" alt="" />
-            </div>
-            <div class="info">
-              <h4>کتاب سم زدایی دوپامین</h4>
-              <h4>تیبو موریس</h4>
-              <h4>ژانر:علمی</h4>
-            </div>
-          </div>
-          <div class="book">
-            <div>
-              <img src="./img/book.jpg" width="120" height="120" alt="" />
-            </div>
-            <div class="info">
-              <h4>کتاب سم زدایی دوپامین</h4>
-              <h4>تیبو موریس</h4>
-              <h4>ژانر:علمی</h4>
-            </div>
-          </div>
-          <div class="book">
-            <div>
-              <img src="./img/book.jpg" width="120" height="120" alt="" />
-            </div>
-            <div class="info">
-              <h4>کتاب سم زدایی دوپامین</h4>
-              <h4>تیبو موریس</h4>
-              <h4>ژانر:علمی</h4>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div>
-        <div class="ganr2">
-          <h2><span>کتاب های فلسفه و منطق</span></h2>
-          <h2>مشاهده همه</h2>
-        </div>
-        <div class="tarikhi">
-          <div class="book">
-            <div>
-              <img
-                src="./img/فلسفه ای برای زندگی.jpg"
-                width="120"
-                height="120"
-                alt=""
-              />
-            </div>
-            <div class="info">
-              <h4>کتاب فلسفه ای برای زندگی</h4>
-              <h4>ویلیام اروین</h4>
-              <h4>ژانر:فلسفه</h4>
-            </div>
-          </div>
-          <div class="book">
-            <div>
-              <img
-                src="./img/فلسفه ای برای زندگی.jpg"
-                width="120"
-                height="120"
-                alt=""
-              />
-            </div>
-            <div class="info">
-              <h4>کتاب فلسفه ای برای زندگی</h4>
-              <h4>ویلیام اروین</h4>
-              <h4>ژانر:فلسفه</h4>
-            </div>
-          </div>
-          <div class="book">
-            <div>
-              <img
-                src="./img/فلسفه ای برای زندگی.jpg"
-                width="120"
-                height="120"
-                alt=""
-              />
-            </div>
-            <div class="info">
-              <h4>کتاب فلسفه ای برای زندگی</h4>
-              <h4>ویلیام اروین</h4>
-              <h4>ژانر:فلسفه</h4>
-            </div>
-          </div>
-          <div class="book">
-            <div>
-              <img
-                src="./img/فلسفه ای برای زندگی.jpg"
-                width="120"
-                height="120"
-                alt=""
-              />
-            </div>
-            <div class="info">
-              <h4>کتاب فلسفه ای برای زندگی</h4>
-              <h4>ویلیام اروین</h4>
-              <h4>ژانر:فلسفه</h4>
-            </div>
-          </div>
-          <div class="book">
-            <div>
-              <img
-                src="./img/فلسفه ای برای زندگی.jpg"
-                width="120"
-                height="120"
-                alt=""
-              />
-            </div>
-            <div class="info">
-              <h4>کتاب فلسفه ای برای زندگی</h4>
-              <h4>ویلیام اروین</h4>
-              <h4>ژانر:فلسفه</h4>
-            </div>
-          </div>
-        </div>
-      </div>
+      {% endfor %}
     </div>
 
     <div dir="rtl" class="footer">
