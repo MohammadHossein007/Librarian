@@ -1,0 +1,97 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "moraba";
+    font-weight: bold;
+    font-size: 1.3rem;
+}
+
+.book_information {
+    background-color: rgba(255, 255, 255, .5);
+    width: 54%;
+    max-width: 1200px;
+    /*height: 430px;*/
+    /*display: flex;*/
+    align-items: center;
+    border-radius: 20px;
+    border: 5px solid #fff;
+    /*overflow: visible;*/
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    justify-items: center;
+}
+
+.book_information>div {
+    width: 70%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+.description{
+    border: gray 1px solid;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    grid-column: 1/3;
+}
+
+
+.login-img {
+    width: 30%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.login-img img {
+    object-fit: cover;
+    border-radius: 1rem;
+}
+
+.book_information .information h1,
+h2 {
+    border-radius: .25rem;
+    padding: 3px 3px 0.0000001px;
+    font-size: 18px;
+}
+
+.book_information .information h1 {
+    font-size: 30px;
+}
+
+.book_information .information {
+    gap: 1rem;
+}
+
+.information {
+    margin-right: 6rem;
+    margin-bottom: 1rem;
+}
+
+body {
+
+    background-image: url(../image/login_background.jpg);
+    width: 100%;
+    background-size: cover;
+    background-position: 0 40%;
+    background-repeat: no-repeat;
+    background-origin: border-box;
+    background-clip: border-box;
+    box-sizing: border-box;
+
+    background-attachment: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+
+
+
+}
+
+svg{
+    transform: translate(-70px, -168px);
+    cursor: pointer;
+}
