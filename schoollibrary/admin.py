@@ -1,7 +1,7 @@
 from django.contrib import admin
+from django.db.models import Q
 from django.db.models.aggregates import Count
 from . import models
-
 
 @admin.register(models.Book)
 class BookAdmin(admin.ModelAdmin):
@@ -11,7 +11,8 @@ class BookAdmin(admin.ModelAdmin):
     list_select_related = ['author']
 
     def get_category(self, obj):
-        return ", ".join([c.title for c in obj.category.all()])
+        return " | ".join([c.title for c in obj.category.all()])
+    get_category.short_description='دسته بندی ها'
 
 
 class BookCountFilter(admin.SimpleListFilter):
@@ -53,7 +54,7 @@ class CategoryAdmin(admin.ModelAdmin):
 @admin.register(models.Loan)
 class LoanAdmin(admin.ModelAdmin):
     list_display = ['book', 'member', 'borrowed_on', 'return_by', 'status']
-    search_fields = ['member', 'book', 'borrowed_on']
+    search_fields = ['member__first_name', 'book__title', 'borrowed_on']
     list_filter = ['borrowed_on', 'return_by', 'status']
 
 
@@ -65,7 +66,17 @@ class AuthorAdmin(admin.ModelAdmin):
 @admin.register(models.Member)
 class MemberAdmin(admin.ModelAdmin):
     list_display = ['first_name', 'last_name', 'email', 'phone_number', 'membership_id', 'membership_start_date',
-                    'membership_end_date', 'is_active']
-
+                    'membership_end_date', 'is_active', 'borrowed_books']
     search_fields = ['membership_id', 'first_name', 'last_name']
     list_filter = ['membership_start_date', 'membership_end_date', 'is_active']
+
+    def borrowed_books(self, obj):
+        loans = models.Loan.objects.filter(
+            Q(member=obj) & (Q(status='borrowed') | Q(status='overdue'))
+        )
+        books = [loan.book.title for loan in loans]
+        if books:
+            return ", ".join(books)  # Return book titles as a comma-separated string
+        return "هیچ کتابی قرض گرقته نشده"
+
+    borrowed_books.short_description = 'کتاب های قرض گرفته شده'
