@@ -4,6 +4,8 @@ from pickle import TRUE
 from django.db import models
 from extensions.utils import jalali_converter
 from django.forms import SlugField
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 
 # Models
 class Member(models.Model):
@@ -66,6 +68,7 @@ class Book(models.Model):
 
     def jplaced_at(self):
         return jalali_converter(self.placed_at)
+    jplaced_at.short_description='تاریخ اضافه شدن'
 
 
 class Loan(models.Model):
@@ -83,3 +86,14 @@ class Loan(models.Model):
     class Meta:
         verbose_name = 'امانت'
         verbose_name_plural = 'امانت ها'
+
+
+# Signals
+@receiver(post_save, sender=Loan)
+def update_book_availability(sender, instance, created, **kwargs):
+    book = instance.book
+    if instance.status == 'returned':
+        book.is_available = True
+    else:
+        book.is_available = False
+    book.save()
