@@ -22,6 +22,7 @@
             <h1>اطلاعات کتاب</h1>
             <h2>نام کتاب : {{ book.title }}</h2>
             <h2>نویسنده : {{ book.author }}</h2>
+            <h2> تاریخ اضافه شدن : {{ book.jplaced_at }}</h2>
             <div class="category">
                 <h2>دسته‌بندی:</h2>
                 {% for category in book.category.all %}
@@ -29,16 +30,16 @@
                 {% endfor %}
             </div>
             {% if book.is_available %}
-            <h2 style="color: darkgreen;" >موجود است</h2>
+                <h2 style="color: darkgreen;" >موجود است</h2>
             {% else %}
-            <h2 style="color: brown;" >موجود نیست</h2>
+                <h2 style="color: brown;" >موجود نیست</h2>
             {% endif %}
         </div>
         <div class="login-img">
             <img src="{{book.image.url}}" width="200" height="200" alt="" style="object-fit: contain;">
         </div>
         <div class="description">
-            <h2>{{ book.description }}</h2>
+            {{ book.description|linebreaks }}
         </div>
     </div>
     <a href="/">

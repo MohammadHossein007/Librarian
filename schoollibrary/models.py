@@ -2,9 +2,10 @@ from enum import unique
 from operator import truediv
 from pickle import TRUE
 from django.db import models
+from extensions.utils import jalali_converter
 from django.forms import SlugField
 
-
+# Models
 class Member(models.Model):
     first_name = models.CharField(max_length=128, verbose_name='نام')
     last_name = models.CharField(max_length=128, verbose_name='نام خانوادگی')
@@ -63,8 +64,8 @@ class Book(models.Model):
     def __str__(self):
         return self.title
 
-    # def get_category(self):
-    #     return ' | '.join([c.title for c in self.category.all()])
+    def jplaced_at(self):
+        return jalali_converter(self.placed_at)
 
 
 class Loan(models.Model):

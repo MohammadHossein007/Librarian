@@ -34,6 +34,7 @@
     border-radius: 10px;
     margin-bottom: 10px;
     grid-column: 1/3;
+    word-wrap: break-word;
 }
 
 
@@ -51,7 +52,8 @@
 }
 
 .book_information .information h1,
-h2 {
+h2,
+p{
     border-radius: .25rem;
     padding: 3px 3px 0.0000001px;
     font-size: 18px;
@@ -92,6 +94,6 @@ body {
 }
 
 svg{
-    transform: translate(-70px, -168px);
+    transform: translate(-90px, -90px);
     cursor: pointer;
 }

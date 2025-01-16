@@ -5,13 +5,13 @@ from . import models
 
 @admin.register(models.Book)
 class BookAdmin(admin.ModelAdmin):
-    list_display = ['title', 'author', 'get_category', 'is_available', 'placed_at']
-    search_fields = ['title', 'author']
+    list_display = ['title', 'author', 'get_category', 'is_available', 'jplaced_at']
+    search_fields = ['title', 'author__name']
     filter_horizontal = ['category', ]
     list_select_related = ['author']
 
     def get_category(self, obj):
-        return "|".join([c.title for c in obj.category.all()])
+        return ", ".join([c.title for c in obj.category.all()])
 
 
 class BookCountFilter(admin.SimpleListFilter):
