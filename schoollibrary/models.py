@@ -25,6 +25,13 @@ class Member(models.Model):
     def __str__(self):
         return f'{self.first_name} {self.last_name}'
 
+    def jmembership_start_date(self):
+            return jalali_converter(self.membership_start_date)
+    jmembership_start_date.short_description = 'شروع عضویت'
+
+    def jmembership_end_date(self):
+            return jalali_converter(self.membership_end_date)
+    jmembership_end_date.short_description = 'پایان عضویت'
 
 class Category(models.Model):
     title = models.CharField(max_length=128, verbose_name='عنوان')
@@ -86,6 +93,15 @@ class Loan(models.Model):
     class Meta:
         verbose_name = 'امانت'
         verbose_name_plural = 'امانت ها'
+
+
+    def jreturn_by(self):
+            return jalali_converter(self.return_by)
+    jreturn_by.short_description = 'تاریخ برگشت'
+
+    def jborrowed_on(self):
+            return jalali_converter(self.borrowed_on)
+    jborrowed_on.short_description = 'تاریخ بردن'
 
 
 # Signals

@@ -53,7 +53,7 @@ class CategoryAdmin(admin.ModelAdmin):
 
 @admin.register(models.Loan)
 class LoanAdmin(admin.ModelAdmin):
-    list_display = ['book', 'member', 'borrowed_on', 'return_by', 'status']
+    list_display = ['book', 'member', 'jborrowed_on', 'jreturn_by', 'status']
     search_fields = ['member__first_name', 'book__title', 'borrowed_on']
     list_filter = ['borrowed_on', 'return_by', 'status']
 
@@ -65,8 +65,8 @@ class AuthorAdmin(admin.ModelAdmin):
 
 @admin.register(models.Member)
 class MemberAdmin(admin.ModelAdmin):
-    list_display = ['first_name', 'last_name', 'email', 'phone_number', 'membership_id', 'membership_start_date',
-                    'membership_end_date', 'is_active', 'borrowed_books']
+    list_display = ['first_name', 'last_name', 'email', 'phone_number', 'membership_id', 'jmembership_start_date',
+                    'jmembership_end_date', 'is_active', 'borrowed_books']
     search_fields = ['membership_id', 'first_name', 'last_name']
     list_filter = ['membership_start_date', 'membership_end_date', 'is_active']
 
