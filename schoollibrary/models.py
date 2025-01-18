@@ -61,7 +61,7 @@ class Book(models.Model):
     title = models.CharField(max_length=128, unique=True, verbose_name='عنوان')
     description = models.TextField(blank=True, verbose_name='توضیحات')
     author = models.ForeignKey(Author, on_delete=models.SET_NULL, null=True, verbose_name='نویسنده')
-    category = models.ManyToManyField(Category, verbose_name='دسته بندی ها')
+    category = models.ManyToManyField(Category, verbose_name='دسته بندی ها', related_name='book')
     image = models.ImageField(default='no-image-available-icon-vector.jpg', blank=True, verbose_name='تصویر')
     placed_at = models.DateField(auto_now=True, verbose_name='تاریخ اضافه شدن')
     is_available = models.BooleanField(default=True, verbose_name='موجود')

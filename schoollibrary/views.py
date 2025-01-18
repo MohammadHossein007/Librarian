@@ -4,7 +4,7 @@ from .models import Book, Category
 
 def main_page(request):
     categories = Category.objects.all()
-    not_empty_categories = Category.objects.prefetch_related('book_set').filter(book__isnull=False).distinct()
+    not_empty_categories = Category.objects.prefetch_related('book').filter(book__isnull=False).distinct()
     context = {
         'categories': categories,
         'not_empty_categories': not_empty_categories,
@@ -22,11 +22,9 @@ def book_info(request, book_id):
     return render(request, 'book_info.html', context)
 
 
-def books_by_category(request, category_id):
-    # books = get_list_or_404(Category, id=category_id)
-    # category = get_object_or_404(Category, id=category_id)
-    category = get_object_or_404(Category, id=category_id)
-    books = category.book_set.all()
+def books_in_category(request, category_id):
+    category = get_object_or_404(Category.objects.prefetch_related("book"), id=category_id)
+    books = category.book.prefetch_related('author').all()
     all_categories = Category.objects.all()
     context = {
         'category': category,
