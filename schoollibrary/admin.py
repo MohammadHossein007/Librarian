@@ -2,6 +2,8 @@ from django.contrib import admin
 from django.db.models import Q
 from django.db.models.aggregates import Count
 from . import models
+admin.site.site_title = 'پنل مدیریت'
+admin.site.site_header = 'پنل مدیریت'
 
 @admin.register(models.Book)
 class BookAdmin(admin.ModelAdmin):

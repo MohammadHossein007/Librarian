@@ -106,7 +106,7 @@
             <div class="tarikhi">
                 {% for book in books %}
                 <a class="book " href="{% url 'book_info' book.id %}">
-                    <div><img src="{{ book.image.url }}" width="120" height="120" alt=""></div>
+                    <div><img class="book_image" src="{{ book.image.url }}" width="120" height="120" alt=""></div>
                     <div class="info">
                         <h4>کتاب {{ book.title }}</h4>
                         <h4>{{book.author}}</h4>

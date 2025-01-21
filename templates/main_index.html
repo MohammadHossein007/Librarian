@@ -5,7 +5,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>کتابدار</title>
     <link rel="stylesheet" href="{% static 'library/css/home.css' %}" />
     <link rel="stylesheet" href="{% static 'library/css/font.css' %}" />
     <style>
@@ -138,7 +138,7 @@
           </a>
         </div>
         <div class="tarikhi">
-          {% for book in category.book.all %}
+          {% for book in category.book.all|slice:":5" %}
           <a class="book" href="{% url 'book_info' book.id %}" style="color: black;">
             <div>
               <img class="book-image" src="{{ book.image.url }}" width="120" height="120" alt="" />
