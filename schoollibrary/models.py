@@ -1,11 +1,5 @@
-from enum import unique
-from operator import truediv
-from pickle import TRUE
 from django.db import models
 from extensions.utils import jalali_converter
-from django.forms import SlugField
-from django.db.models.signals import post_save
-from django.dispatch import receiver
 
 # Models
 class Member(models.Model):
@@ -104,12 +98,3 @@ class Loan(models.Model):
     jborrowed_on.short_description = 'تاریخ بردن'
 
 
-# Signals
-@receiver(post_save, sender=Loan)
-def update_book_availability(sender, instance, created, **kwargs):
-    book = instance.book
-    if instance.status == 'returned':
-        book.is_available = True
-    else:
-        book.is_available = False
-    book.save()
