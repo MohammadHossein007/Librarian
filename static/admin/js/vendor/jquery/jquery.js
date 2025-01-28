@@ -1,5 +1,5 @@
 /*!
- * jQuery JavaScript Library v3.7.1
+ * jQuery JavaScript config v3.7.1
  * https://jquery.com/
  *
  * Copyright OpenJS Foundation and other contributors
