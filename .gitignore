@@ -1,15 +1,6 @@
 # Created by https://www.toptal.com/developers/gitignore/api/django,pycharm,python,database
 # Edit at https://www.toptal.com/developers/gitignore?templates=django,pycharm,python,database
 
-### Database ###
-*.accdb
-*.db
-*.dbf
-*.mdb
-*.pdb
-*.sqlite3
-*.db-shm
-*.db-wal
 
 ### Django ###
 *.log
@@ -17,9 +8,7 @@
 *.pyc
 __pycache__/
 local_settings.py
-db.sqlite3
-db.sqlite3-journal
-media
+*.vscode
 
 # If your build process includes running collectstatic, then you probably don't need or want to include staticfiles/
 # in your Git repository. Update and uncomment the following line accordingly.
@@ -37,7 +26,6 @@ media
 .Python
 build/
 develop-eggs/
-dist/
 downloads/
 eggs/
 .eggs/
