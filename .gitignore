@@ -1,13 +1,14 @@
 # Created by https://www.toptal.com/developers/gitignore/api/django,pycharm,python,database
 # Edit at https://www.toptal.com/developers/gitignore?templates=django,pycharm,python,database
-
+### Database ###
+*.idea
 
 ### Django ###
 *.log
 *.pot
 *.pyc
 __pycache__/
-local_settings.py
+local_settings.pyal
 *.vscode
 
 # If your build process includes running collectstatic, then you probably don't need or want to include staticfiles/
