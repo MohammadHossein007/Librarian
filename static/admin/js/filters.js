@@ -4,7 +4,7 @@
 'use strict';
 {
     // Init filters.
-    let filters = JSON.parse(sessionStorage.getItem('django.admin.filtersState'));
+    let filters = JSON.parse(sessionStorage.getItem('django.account.filtersState'));
 
     if (!filters) {
         filters = {};
@@ -24,7 +24,7 @@
     details.forEach(detail => {
         detail.addEventListener('toggle', event => {
             filters[`${event.target.dataset.filterTitle}`] = detail.open;
-            sessionStorage.setItem('django.admin.filtersState', JSON.stringify(filters));
+            sessionStorage.setItem('django.account.filtersState', JSON.stringify(filters));
         });
     });
 }

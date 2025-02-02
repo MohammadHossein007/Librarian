@@ -34,17 +34,16 @@ INTERNAL_IPS = [
 ]
 
 INSTALLED_APPS = [
+    'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'admin_interface',
-    'colorfield',
-    'django.contrib.admin',
-    'library.apps.SchoollibraryConfig',
+    'library.apps.LibraryConfig',
+    'account.apps.AccountConfig',
+    'extensions',
     'debug_toolbar',
-    'extensions'
 ]
 
 MIDDLEWARE = [
@@ -111,7 +110,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
+LOGIN_REDIRECT_URL = 'account:profile'
 # Internationalization
 # https://docs.djangoproject.com/en/5.1/topics/i18n/
 
@@ -141,8 +140,9 @@ MEDIA_ROOT = path.join(BASE_DIR, 'media')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-LOGIN_REDIRECT_URL = '/admin/'
 LOGOUT_REDIRECT_URL = '/'
 
 X_FRAME_OPTIONS = 'SAMEORIGIN'
 SILENCED_SYSTEM_CHECKS = ['security.W019']
+
+AUTH_USER_MODEL = 'account.Member'
