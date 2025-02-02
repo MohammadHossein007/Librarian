@@ -63,22 +63,3 @@ class LoanAdmin(admin.ModelAdmin):
 @admin.register(models.Author)
 class AuthorAdmin(admin.ModelAdmin):
     search_fields = ['name']
-
-
-@admin.register(models.Member)
-class MemberAdmin(admin.ModelAdmin):
-    list_display = ['first_name', 'last_name', 'email', 'phone_number', 'membership_id', 'jmembership_start_date',
-                    'jmembership_end_date', 'is_active', 'borrowed_books']
-    search_fields = ['membership_id', 'first_name', 'last_name']
-    list_filter = ['membership_start_date', 'membership_end_date', 'is_active']
-
-    def borrowed_books(self, obj):
-        loans = models.Loan.objects.filter(
-            Q(member=obj) & (Q(status='borrowed') | Q(status='overdue'))
-        )
-        books = [loan.book.title for loan in loans]
-        if books:
-            return ", ".join(books)  # Return book titles as a comma-separated string
-        return "هیچ کتابی قرض گرقته نشده"
-
-    borrowed_books.short_description = 'کتاب های قرض گرفته شده'

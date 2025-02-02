@@ -1,31 +1,7 @@
 from django.db import models
+from account.models import Member
 from extensions.utils import jalali_converter
 
-# Models
-class Member(models.Model):
-    first_name = models.CharField(max_length=128, verbose_name='نام')
-    last_name = models.CharField(max_length=128, verbose_name='نام خانوادگی')
-    email = models.EmailField(null=False, unique=True, verbose_name='آدرس ایمیل')
-    phone_number = models.CharField(max_length=11, blank=True, unique=True, verbose_name='شماره تلفن')
-    membership_id = models.IntegerField(primary_key=True, null=False, verbose_name='کد عضویت')
-    membership_start_date = models.DateField(auto_now_add=True, verbose_name='تاریخ شروع عضویت')
-    membership_end_date = models.DateField(null=True, blank=True, verbose_name='تاریخ پایان عضویت')
-    is_active = models.BooleanField(default=True, verbose_name='فعال')
-
-    class Meta:
-        verbose_name = 'عضو'
-        verbose_name_plural = 'اعضاء'
-
-    def __str__(self):
-        return f'{self.first_name} {self.last_name}'
-
-    def jmembership_start_date(self):
-            return jalali_converter(self.membership_start_date)
-    jmembership_start_date.short_description = 'شروع عضویت'
-
-    def jmembership_end_date(self):
-            return jalali_converter(self.membership_end_date)
-    jmembership_end_date.short_description = 'پایان عضویت'
 
 class Category(models.Model):
     title = models.CharField(max_length=128, verbose_name='عنوان')

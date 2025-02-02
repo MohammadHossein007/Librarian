@@ -1,0 +1,66 @@
+{% load static %}
+<div class="container">
+      <div class="section_nav">
+        <div class="left_nav d-flex sass align-items-center">
+          <div class="section-log d-flex align-items-center">
+            <div class="box-img-log">
+              <!-- <img src="img/image.png" width="50" height="50" alt=""> -->
+            </div>
+          </div>
+        </div>
+        <div class="center_nav">
+          <ul class="d-flex gap-3rem align-items-center">
+            <li><a href="{% url 'account:login' %}" class="active">ورود</a></li>
+
+            <!-- <li><a href="#">Messages</a></li> -->
+            <li><a class="aboutcolor" href="#">دباره ما</a></li>
+            <li onclick="image()" class="second aboutcolor">
+              دسته بندی
+              <div id="ganr">
+                {% for category in categories %}
+                <a href="{% url 'books_by_category' category.id %}">{{ category.title }}</a>
+                {% endfor %}
+              </div>
+
+              <img
+                id="img"
+                width="21"
+                height="17"
+                src="{% static 'library/image/Screenshot 2024-12-16 193324.png' %}"
+                alt=""
+              />
+            </li>
+          </ul>
+        </div>
+        <div class="right_nav">
+          <div class="icon">
+            <form class="icon_form">
+              <input type="text" placeholder="جستجو..." name="" id="" />
+              <button class="button" type="reset">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="20"
+                  height="20"
+                  fill="currentColor"
+                  class="bi bi-search"
+                  viewBox="0 0 16 16"
+                  id="IconChangeColor"
+                >
+                  <path
+                    d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"
+                    id="mainIconPathAttribute"
+                    fill="#000000"
+                  ></path>
+                </svg>
+              </button>
+            </form>
+          </div>
+          <div class="user_section">
+            <a class="status-connection" href="/static">کتابدار</a>
+            <!-- <div class="profile_user">
+                        <img src="img/team4.png" alt="">
+                    </div> -->
+          </div>
+        </div>
+      </div>
+</div>

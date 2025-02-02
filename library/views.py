@@ -10,7 +10,7 @@ def main_page(request):
         'not_empty_categories': not_empty_categories,
     }
 
-    return render(request, 'main_index.html', context)
+    return render(request, 'library/main_index.html', context)
 
 
 def book_info(request, book_id):
@@ -19,7 +19,7 @@ def book_info(request, book_id):
         'book': book,
     }
 
-    return render(request, 'book_info.html', context)
+    return render(request, 'library/book_info.html', context)
 
 
 def books_in_category(request, category_id):
@@ -32,4 +32,4 @@ def books_in_category(request, category_id):
         'all_categories': all_categories,
     }
 
-    return render(request, 'category.html', context)
+    return render(request, 'library/category.html', context)

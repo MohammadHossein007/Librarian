@@ -1,0 +1,81 @@
+{% load  static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>کتابدار</title>
+    <link rel="stylesheet" href="{% static 'library/css/home.css' %}" />
+    <link rel="stylesheet" href="{% static 'library/css/font.css' %}" />
+    <style>
+      .tarikhi {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        padding: 10px;
+        margin-top: 20px;
+        border: 1px gray solid;
+        border-radius: 1rem;
+      }
+      .book-image{
+        object-fit: contain;
+      }
+    </style>
+  </head>
+
+  <body>
+    {% include "library/header.html" %}
+    <div class="image">
+      <div>
+        <img src="{% static 'library/image/landing_page.webp' %}" alt="" />
+      </div>
+      <div>
+        <h1 class="name">کتابدار</h1>
+        <h1 class="tou">مدیریت آسان کتاب خانه با سایت کتابدار</h1>
+      </div>
+    </div>
+    <div dir="rtl" class="daste">
+      <div id="title">
+        <span class="booksganr">دسته بندی</span>
+      </div>
+      <div class="ganrs">
+        {% for category in categories %}
+        <div>
+          <a href="{% url 'books_by_category' category.id %}" style="color: black;">
+            <span class="books">{{category.title}}</span>
+          </a>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+
+    <div class="main">
+      {% for category in not_empty_categories %}
+      <div>
+        <div class="ganr2">
+          <h2><span>{{category.title}}</span></h2>
+          <a href="{% url 'books_by_category' category.id %}" style="color: black;">
+            <h2>مشاهده همه</h2>
+          </a>
+        </div>
+        <div class="tarikhi">
+          {% for book in category.book.all|slice:":5" %}
+          <a class="book" href="{% url 'book_info' book.id %}" style="color: black;">
+            <div>
+              <img class="book-image" src="{{ book.image.url }}" width="120" height="120" alt="" />
+            </div>
+            <div class="info">
+              <h4>{{ book.title }}</h4>
+              <br>
+              <h4>{{ book.author }}</h4>
+            </div>
+          </a>
+          {% endfor %}
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    {% include "library/footer.html" %}
+    <script src="{% static 'library/js/main.js' %}"></script>
+  </body>
+</html>

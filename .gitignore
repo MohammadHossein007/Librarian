@@ -1,6 +1,5 @@
 # Created by https://www.toptal.com/developers/gitignore/api/django,pycharm,python,database
 # Edit at https://www.toptal.com/developers/gitignore?templates=django,pycharm,python,database
-
 ### Database ###
 *.idea
 
@@ -42,6 +41,9 @@ share/python-wheels/
 .installed.cfg
 *.egg
 MANIFEST
+.idea/
+.vscode/
+
 
 # PyInstaller
 #  Usually these files are written by a python script from a template
