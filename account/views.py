@@ -17,8 +17,6 @@ def admin(request):
 class CustomLoginView(LoginView):
     def get_success_url(self):
         user = self.request.user
-        if user.is_superuser:
-            return reverse_lazy("account:index")
         elif user.is_staff:
             return reverse_lazy("account:account")
         return reverse_lazy("account:profile")
