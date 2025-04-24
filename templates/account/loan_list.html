@@ -1,0 +1,103 @@
+<!doctype html>
+{% load static %}
+<html lang="en" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="shortcut icon" href="{% static 'account/img/fav.png' %}" type="image/x-icon">
+  <link rel="stylesheet" href="https://kit-pro.fontawesome.com/releases/v5.12.1/css/pro.min.css">
+  <link rel="stylesheet" type="text/css" href='{% static "account/css/style.css" %}'>
+  <title>صفحه مدیریت</title>
+</head>
+<body class="bg-gray-200">
+
+
+<!-- start navbar -->
+{% include './navbar.html' %}
+<!-- end navbar -->
+
+<!-- strat wrapper -->
+<div class="h-screen flex flex-row flex-wrap">
+
+    <!-- start sidebar -->
+    {% include "./sidebar.html" %}
+    <!-- end sidebar -->
+
+    <!-- strat content -->
+    <div class="bg-gray-100 flex-1 p-6">
+        <div class="card h-full">
+
+            <div class="card-body h-full">
+                <div class="flex justify-between">
+                    <h2 class="font-bold text-lg mb-10">امانت ها</h2>
+                 </div>
+
+    <!-- start a table -->
+<table class="w-full border border-gray-300 rounded-lg overflow-hidden shadow-lg">
+    <!-- table head -->
+    <thead class="bg-gray-100 text-gray-700 text-sm">
+        <tr class="border-b border-gray-300">
+            <th class="py-3 px-4 font-semibold text-right">کتاب</th>
+            <th class="py-3 px-4 font-semibold text-right">عضو</th>
+            <th class="py-3 px-4 font-semibold text-right">تاریخ بردن</th>
+            <th class="py-3 px-4 font-semibold text-right">تاریخ برگشت</th>
+            <th class="py-3 px-4 font-semibold text-right">وضعیت</th>
+            <th class="py-3 px-4 font-semibold text-right"></th>
+        </tr>
+    </thead>
+    <!-- end table head -->
+
+    <!-- table body -->
+    <tbody class="text-gray-700 text-sm divide-y divide-gray-300">
+        {% for loan in object_list %}
+        <tr class="hover:bg-gray-50 transition duration-200">
+            <!-- name -->
+            <td class="py-3 px-4 font-medium text-right w-1/12">{{ loan.book }}</td>
+            <td class="py-3 px-4 font-medium text-right">{{ loan.member }}</td>
+            <td class="py-3 px-4 text-right">{{ loan.jborrowed_on }}</td>
+            <td class="py-3 px-4 text-right">{{ loan.jreturn_by }}</td>
+            {% if loan.status == "r" %}
+            <td class="py-3 px-4 text-right text-green-500 font-semibold flex items-center justify-start gap-2">
+                 <i class="fad fa-circle"></i>برگردانده شده
+            </td>
+            {% elif loan.status == "b" %}
+            <td class="py-3 px-4 text-right text-yellow-500 font-semibold flex items-center justify-start gap-2">
+                <i class="fad fa-circle"></i>قرض گرفته شده
+            </td>
+            {% elif loan.status == "o" %}
+                <td class="py-3 px-4 text-right text-red-500 font-semibold flex items-center justify-start gap-2">
+                <i class="fad fa-circle"></i>عقب افتاده
+            </td>
+            {% endif %}
+            {% if loan.status == "b" or loan.status == "o" %}
+                <td>
+                    <a href="{% url 'account:return_book' loan.id %}" class="bg-blue-500 text-white px-4 py-2 rounded-lg">
+                      برگرداندن کتاب
+                    </a>
+                </td>
+            {% endif %}
+        </tr>
+        {% endfor %}
+    </tbody>
+    <!-- end table body -->
+</table>
+
+    <!-- end a table -->
+    </div>
+
+</div>
+    </div>
+    <!-- end content -->
+
+</div>
+<!-- end wrapper -->
+
+
+
+<!-- script -->
+<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+<script src={% static "account/js/scripts.js" %}></script>
+<!-- end script -->
+
+</body>
+</html>
