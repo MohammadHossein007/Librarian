@@ -1,12 +1,21 @@
-* {
+*{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: "moraba";
+    font-family: "moraba", serif;
     font-weight: bold;
     font-size: 1.1rem;
     
 }
+
+html, body{
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+}
+
 .book_image{
     object-fit: contain;
 }
@@ -21,7 +30,7 @@ ul {
 }
 
 #ganr {
-    opacity: 0%;
+    opacity: 0;
 }
 
 .genra {
@@ -421,9 +430,12 @@ ul {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: start;
     height: auto;
-
+    background-color: #d2ecec;
+    padding-top: 1.5rem;
+    border-radius: 1rem;
+    flex: 1;
 }
 
 .tarikhi {
@@ -431,8 +443,6 @@ ul {
     width: 60rem;
     height: auto;
     margin-bottom: 4rem;
-    /* align-items: center; */
-    /* flex-wrap: wrap; */
     gap: 1rem;
     justify-items: center;
     grid-template-columns: repeat(5,1fr);
@@ -525,12 +535,15 @@ ul {
 }
 
 .footer {
-    margin: 0 1rem 1rem;
+    margin:  0.05rem 0 0;
     background-color: #e1e1e1;
     border-radius: 1rem;
     padding: 2rem;
 }
 
+.center{
+
+}
 
 .footerabout {
     text-align: center;
@@ -577,12 +590,7 @@ ul {
     font-size: 1.7rem;
 }
 
-.main {
-    background-color: #d2ecec;
-    padding-top: 1.5rem;
-    border-radius: 1rem;
-    margin: 2rem 1rem;
-}
+
 
 #tell {
     display: flex;

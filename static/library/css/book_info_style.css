@@ -97,3 +97,7 @@ svg{
     transform: translate(-90px, -90px);
     cursor: pointer;
 }
+
+image {
+    object-fit: contain;
+}
