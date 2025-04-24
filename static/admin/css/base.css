@@ -97,7 +97,7 @@ body {
     margin: 0;
     padding: 0;
     font-size: 0.875rem;
-    font-family: moraba, serif;
+    font-family: var(--font-family-primary);
     color: var(--body-fg);
     background: var(--body-bg);
 }
