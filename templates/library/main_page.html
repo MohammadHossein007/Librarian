@@ -41,7 +41,7 @@
       <div class="ganrs">
         {% for category in categories %}
         <div>
-          <a href="{% url 'books_by_category' category.id %}" style="color: black;">
+          <a href="{% url 'library:books_by_category' category.id %}" style="color: black;">
             <span class="books">{{category.title}}</span>
           </a>
         </div>
@@ -54,13 +54,13 @@
       <div>
         <div class="ganr2">
           <h2><span>{{category.title}}</span></h2>
-          <a href="{% url 'books_by_category' category.id %}" style="color: black;">
+          <a href="{% url 'library:books_by_category' category.id %}" style="color: black;">
             <h2>مشاهده همه</h2>
           </a>
         </div>
         <div class="tarikhi">
           {% for book in category.book.all|slice:":5" %}
-          <a class="book" href="{% url 'book_info' book.id %}" style="color: black;">
+          <a class="book" href="{% url 'library:book_info' book.id %}" style="color: black;">
             <div>
               <img class="book-image" src="{{ book.image.url }}" width="120" height="120" alt="" />
             </div>

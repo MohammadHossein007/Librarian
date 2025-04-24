@@ -1,0 +1,93 @@
+<!doctype html>
+{% load static %}
+<html lang="en" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="shortcut icon" href="{% static 'account/img/fav.png' %}" type="image/x-icon">
+  <link rel="stylesheet" href="https://kit-pro.fontawesome.com/releases/v5.12.1/css/pro.min.css">
+  <link rel="stylesheet" type="text/css" href='{% static "account/css/style.css" %}'>
+  <title>صفحه مدیریت</title>
+</head>
+<body class="bg-gray-200">
+
+
+<!-- start navbar -->
+{% include './navbar.html' %}
+<!-- end navbar -->
+
+<!-- strat wrapper -->
+<div class="h-screen flex flex-row flex-wrap">
+
+    <!-- start sidebar -->
+    {% include "./sidebar.html" %}
+    <!-- end sidebar -->
+
+    <!-- strat content -->
+<div class="bg-white shadow-md rounded-xl p-8 w-full max-w-3xl mx-auto">
+    <h2 class="text-2xl font-bold text-gray-800 mb-2">تکمیل ثبت‌نام</h2>
+    <p class="text-sm text-gray-600 mb-6">لطفاً اطلاعات خود را وارد کنید تا ثبت‌نام شما نهایی شود.</p>
+
+    {% if messages %}
+        <ul class="mb-4">
+        {% for message in messages %}
+            <li class="text-sm rounded-md p-2 mb-2 {{ message.tags|yesno:'bg-green-100 text-green-700,bg-red-100 text-red-700' }}">
+                {{ message }}
+            </li>
+        {% endfor %}
+        </ul>
+    {% endif %}
+
+    <form method="post" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {% csrf_token %}
+
+        <div class="flex flex-col">
+            <label for="{{ form.first_name.id_for_label }}" class="mb-1 text-sm font-medium text-gray-700">نام</label>
+            {{ form.first_name }}
+        </div>
+
+        <div class="flex flex-col">
+            <label for="{{ form.last_name.id_for_label }}" class="mb-1 text-sm font-medium text-gray-700">نام خانوادگی</label>
+            {{ form.last_name }}
+        </div>
+
+        <div class="flex flex-col md:col-span-2">
+            <label for="{{ form.phone_number.id_for_label }}" class="mb-1 text-sm font-medium text-gray-700">شماره تلفن</label>
+            {{ form.phone_number }}
+        </div>
+
+        <div class="flex flex-col">
+            <label for="{{ form.password.id_for_label }}" class="mb-1 text-sm font-medium text-gray-700">رمز عبور</label>
+            {{ form.password}}
+        </div>
+
+        <div class="flex flex-col">
+            <label for="{{ form.confirm_password.id_for_label }}" class="mb-1 text-sm font-medium text-gray-700">تکرار رمز عبور</label>
+            {{ form.confirm_password}}
+        </div>
+
+        <div class="md:col-span-2 mt-4">
+            <button type="submit"
+                    class="w-full bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition">
+                تکمیل ثبت‌نام
+            </button>
+        </div>
+    </form>
+</div>
+
+    <!-- end content -->
+
+</div>
+<!-- end wrapper -->
+
+
+
+<!-- script -->
+<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+<script src={% static "account/js/scripts.js" %}></script>
+<!-- end script -->
+
+</body>
+</html>
+
+

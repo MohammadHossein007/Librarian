@@ -10,7 +10,16 @@
         </div>
         <div class="center_nav">
           <ul class="d-flex gap-3rem align-items-center">
-            <li><a href="{% url 'account:login' %}" class="active">ورود</a></li>
+            <li>
+                {% if not request.user.is_authenticated %}
+                    <a href="{% url 'account:login' %}" class="active">ورود</a>
+                    <a href="{% url 'account:register' %}" class="active">ثبت نام</a>
+                {% elif request.user.is_staff %}
+                <a href="{% url 'account:dashboard' %}" class="active">پنل مدیریت</a>
+                {% else %}
+                <a href="{% url 'account:profile' %}" class="active">پروفایل</a>
+                {% endif %}
+            </li>
 
             <!-- <li><a href="#">Messages</a></li> -->
             <li><a class="aboutcolor" href="#">دباره ما</a></li>
@@ -18,7 +27,7 @@
               دسته بندی
               <div id="ganr">
                 {% for category in categories %}
-                <a href="{% url 'books_by_category' category.id %}">{{ category.title }}</a>
+                <a href="{% url 'library:books_by_category' category.id %}">{{ category.title }}</a>
                 {% endfor %}
               </div>
 
@@ -34,9 +43,10 @@
         </div>
         <div class="right_nav">
           <div class="icon">
-            <form class="icon_form">
-              <input type="text" placeholder="جستجو..." name="" id="" />
-              <button class="button" type="reset">
+            <form class="icon_form" method="get" action="{% url 'library:main_page' %}">
+              <label for="search"></label>
+              <input required type="text" placeholder="جستجو..." name="search" id="search" />
+              <button class="button" type="submit">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="20"
@@ -56,7 +66,7 @@
             </form>
           </div>
           <div class="user_section">
-            <a class="status-connection" href="/static">کتابدار</a>
+            <a class="status-connection" href="/">کتابدار</a>
             <!-- <div class="profile_user">
                         <img src="img/team4.png" alt="">
                     </div> -->

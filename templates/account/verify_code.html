@@ -29,42 +29,42 @@
         <!-- Right Content -->
         <div class="w-1/2 flex flex-col justify-center items-center p-8">
             <div class="text-center -mt-12">
-                <h1 class="text-3xl font-bold text-gray-800">خوش برگشتی</h1>
-                <p class="text-sm text-gray-500 mt-4 leading-relaxed">
-                    نام کاربری و رمز عبور خود را برای ورود به حساب کاربری خود وارد کنید
+                <h1 class="text-3xl font-bold text-gray-800">احراز هویت</h1>
+                <p class="text-sm text-gray-500 mt-6 leading-relaxed">
+                    کد تایید 6 رقمی ارسال شده به<span class="text-blue-700"> {{ email }} </span>  را وارد کنید
                 </p>
                 {% if messages %}
                     {% for message in messages %}
                         <p class="text-red-500 text-sm mt-3 bg-red-100 pr-5 pl-5 pb-2 pt-2 rounded-lg border-0">{{ message }}</p>
                     {% endfor %}
                 {% endif %}
-                {% if form.non_field_errors %}
-                    {% for error in form.non_field_errors %}
-                        <p class="text-red-500 text-sm mt-3 bg-red-100 pr-5 pl-5 pb-2 pt-2 rounded-lg border-0">{{ error }}</p>
-                    {% endfor %}
-                {% endif %}
             </div>
 
-            <form action="" method="post" class="flex flex-col gap-5 items-center mt-8 w-full px-4">
+            <form method="post" class="flex flex-col gap-5 items-center mt-6 w-full px-4">
                 {% csrf_token %}
                 <div class="flex items-center w-full max-w-md border-2 border-blue-600 rounded-lg p-2 gap-3 bg-white">
-                    <i class="fas fa-user text-blue-600 text-lg"></i>
-                    {{ form.username }}
-                </div>
-
-                <div class="flex items-center w-full max-w-md border-2 border-blue-600 rounded-lg p-2 gap-3 bg-white">
-                    <i class="fas fa-lock text-blue-600 text-lg"></i>
-                    {{ form.password }}
+                    <i class="fas fa-key text-blue-600 text-lg"></i>
+                    <input type="text" id="code" name="code" placeholder="کد ۶ رقمی" required
+                        class="w-full border-none outline-none text-right placeholder:text-sm" />
                 </div>
 
                 <button type="submit"
                         class="w-full max-w-md py-2 text-blue-600 hover:text-cyan-400 transition font-semibold border border-blue-600 rounded-lg">
-                    ورود
+                    تأیید کد
                 </button>
+
+                <div id="timer" class="mt-4 text-sm text-gray-600"></div>
+
+                <form action="{% url 'account:register' %}" method="post" id="resend-form" class="hidden mt-4">
+                    {% csrf_token %}
+                    <button type="submit" id="resend-btn" class="text-blue-600 hover:text-blue-800 underline hidden">
+                        درخواست مجدد کد
+                    </button>
+                </form>
             </form>
 
             <div class="text-center mt-4">
-                <a href="{% url 'account:register' %}" class="text-sm text-blue-500 hover:underline">ثبت نام</a>
+                <a href="{% url 'account:register' %}" class="text-sm text-blue-500 hover:underline">بازگشت به ثبت‌نام</a>
             </div>
         </div>
 
@@ -73,13 +73,13 @@
             <div class="swiper h-full">
                 <div class="swiper-wrapper h-full">
                     <div class="swiper-slide flex justify-center items-center text-white text-lg font-bold rounded-2xl">
-                        <img src="{% static 'account/img/slider1.jpg' %}" alt="" class="w-full h-full object-contain" />
+                        <img src="{% static 'account/img/slider4.png' %}" alt="" class="w-full h-full object-contain" />
                     </div>
                     <div class="swiper-slide flex justify-center items-center text-white text-lg font-bold rounded-2xl">
-                        <img src="{% static 'account/img/slider2.png' %}" alt="" class="w-full h-full object-contain" />
+                        <img src="{% static 'account/img/slider5.png' %}" alt="" class="w-full h-full object-contain" />
                     </div>
                     <div class="swiper-slide flex justify-center items-center text-white text-lg font-bold rounded-2xl">
-                        <img src="{% static 'account/img/slider3.png' %}" alt="" class="w-full h-full object-contain" />
+                        <img src="{% static 'account/img/slider6.png' %}" alt="" class="w-full h-full object-contain" />
                     </div>
                 </div>
                 <div class="swiper-pagination"></div>
@@ -100,7 +100,38 @@
             },
             loop: true,
         });
-    </script>
+        
+        
+    let timeLeft = 120;
+    const timerDisplay = document.getElementById('timer');
+    const codeInput = document.getElementById('code');
+    const submitBtn = document.querySelector('button[type="submit"]');
+    const resendBtn = document.getElementById('resend-btn');
+
+    function formatTime(seconds) {
+        const m = Math.floor(seconds / 60).toString().padStart(2, '0');
+        const s = (seconds % 60).toString().padStart(2, '0');
+        return `${m}:${s}`;
+    }
+
+    const countdown = setInterval(() => {
+        if (timeLeft > 0) {
+            timerDisplay.textContent = `مهلت وارد کردن کد: ${formatTime(timeLeft)}`;
+            timeLeft--;
+        } else {
+            clearInterval(countdown);
+            codeInput.disabled = true;
+            submitBtn.disabled = true;
+            
+            submitBtn.classList.remove('text-blue-600', 'hover:text-cyan-400', 'border-blue-600');
+            submitBtn.classList.add('bg-gray-300', 'text-gray-500', 'border-gray-400', 'cursor-not-allowed');
+            
+            timerDisplay.style.display = 'none';
+            resendBtn.style.display = 'block';
+        }
+    }, 1000);
+</script>
 
 </body>
 </html>
+

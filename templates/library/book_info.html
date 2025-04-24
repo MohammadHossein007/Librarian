@@ -1,7 +1,6 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -30,13 +29,13 @@
                 {% endfor %}
             </div>
             {% if book.is_available %}
-                <h2 style="color: darkgreen;" >موجود است</h2>
+                <h2>موجود است</h2>
             {% else %}
-                <h2 style="color: brown;" >موجود نیست</h2>
+                <h2>موجود نیست</h2>
             {% endif %}
         </div>
         <div class="login-img">
-            <img src="{{book.image.url}}" width="200" height="200" alt="" style="object-fit: contain;">
+            <img src="{{book.image.url}}" width="200" height="200" alt="">
         </div>
         <div class="description">
             {{ book.description|linebreaks }}

@@ -1,27 +1,45 @@
-<!-- start sidebar -->
-  <div id="sideBar" class="relative flex flex-col flex-wrap bg-white border-r border-gray-300 p-6 flex-none w-64 md:-ml-64 md:fixed md:top-0 md:z-30 md:h-screen md:shadow-xl animated faster">
-    
+<div class="flex flex-wrap flex-col right-0 md:right-auto md:left-0 bg-white border-r border-gray-300 p-6 w-64 shadow-xl z-30">
+    <div class="sticky top-0 pt-10 flex flex-col">
+        <div class="text-right hidden md:block mb-4">
+            <button id="sideBarHideBtn">
+                <i class="fad fa-times-circle"></i>
+            </button>
+        </div>
+        {% if request.user.is_staff %}
+        <p class="uppercase text-l text-gray-900 bold tracking-wider">کتاب</p>
+        <hr class="mb-4">
 
-    <!-- sidebar content -->
-    <div class="flex flex-col">
+        <div class="m-2">
+            <a href="{% url 'account:book_list' %}" class="mb-3 capitalize font-medium text-sm hover:text-teal-600 transition ease-in-out duration-500">لیست کتاب ها</a>
+            <i class="fad fa-book text-s mr-2"></i>
+        </div>
 
-      <!-- sidebar toggle -->
-      <div class="text-right hidden md:block mb-4">
-        <button id="sideBarHideBtn">
-          <i class="fad fa-times-circle"></i>
-        </button>
-      </div>
-      <!-- end sidebar toggle -->
+        <div class="m-2">
+            <a href="{% url 'account:add_book' %}" class="mb-3 capitalize font-medium text-sm hover:text-teal-600 transition ease-in-out duration-500">افزودن کتاب</a>
+            <i class="fad fa-book-medical text-s mr-2"></i>
+        </div>
 
-      <p class="uppercase text-xs text-gray-600 mb-4 tracking-wider"></p>
+        <div class="m-2">
+            <a href="{% url 'account:category_list' %}" class="mb-3 capitalize font-medium text-sm hover:text-teal-600 transition ease-in-out duration-500">لیست دسته بندی</a>
+            <i class="fad fa-list text-black mr-2"></i>
+        </div>
 
-      <!-- link -->
-      <a href="#" class="mb-3 capitalize font-medium text-sm hover:text-teal-600 transition ease-in-out duration-500">
-        افزودن کتاب
-        <i class="fad fa-chart-pie text-xs mr-2"></i>                
-      </a>
-      <!-- end link -->
+        <div class="m-2">
+            <a href="{% url 'account:add_category' %}" class="mb-3 capitalize font-medium text-sm hover:text-teal-600 transition ease-in-out duration-500">افزودن دسته بندی</a>
+            <i class="fad fa-plus-square text-black mr-2"></i>
+        </div>
+
+        <p class="uppercase text-l text-gray-900 bold tracking-wider mt-8">امانت</p>
+        <hr class="mb-4">
+
+        <div class="m-2">
+            <a href="{% url 'account:loan_list' %}" class="mb-3 capitalize font-medium text-sm hover:text-teal-600 transition ease-in-out duration-500">لیست امانت ها</a>
+            <i class="fad fa-list"></i>
+        </div>
+        <div class="m-2">
+            <a href="{% url 'account:add_loan' %}" class="mb-3 capitalize font-medium text-sm hover:text-teal-600 transition ease-in-out duration-500">قرض دادن کتاب</a>
+            <i class="fad fa-arrow-circle-up"></i>
+        </div>
+        {% endif %}
     </div>
-    <!-- end sidebar content -->
-  </div>
-<!-- end sidbar -->
+</div>
