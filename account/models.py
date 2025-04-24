@@ -4,7 +4,7 @@ from extensions.utils import jalali_converter
 
 class Member(AbstractUser):
     membership_id = models.IntegerField(primary_key=True, null=False, verbose_name='کد عضویت')
-    phone_number = models.CharField(max_length=11, blank=True, unique=True, verbose_name='شماره تلفن')
+    membership_start_date = models.DateField(auto_now_add=True, null=True, verbose_name='تاریخ شروع عضویت')
     membership_end_date = models.DateField(null=True, blank=True, verbose_name='تاریخ پایان عضویت')
 
     class Meta:
@@ -17,3 +17,8 @@ class Member(AbstractUser):
     def jmembership_end_date(self):
             return jalali_converter(self.membership_end_date)
     jmembership_end_date.short_description = 'پایان عضویت'
+
+
+    def jmembership_start_date(self):
+            return jalali_converter(self.membership_end_date)
+    jmembership_end_date.short_description = 'شروع عضویت'

@@ -1,8 +1,17 @@
 from django.shortcuts import get_object_or_404, render
-from django.views.generic import ListView
 from .models import Book, Category
 
+
 def main_page(request):
+    search = request.GET.get("search")
+    if search:
+        books = Book.objects.select_related('author').filter(title__icontains=search)
+        context = {
+            'books': books,
+            'search': search,
+        }
+        return render(request, 'library/search_result.html', context)
+
     categories = Category.objects.all()
     not_empty_categories = Category.objects.prefetch_related('book__author').filter(book__isnull=False).distinct()
     context = {
@@ -10,11 +19,11 @@ def main_page(request):
         'not_empty_categories': not_empty_categories,
     }
 
-    return render(request, 'library/main_index.html', context)
+    return render(request, 'library/main_page.html', context)
 
 
-def book_info(request, book_id):
-    book = get_object_or_404(Book, id=book_id)
+def book_info(request, pk):
+    book = get_object_or_404(Book, id=pk)
     context = {
         'book': book,
     }
@@ -22,8 +31,8 @@ def book_info(request, book_id):
     return render(request, 'library/book_info.html', context)
 
 
-def books_in_category(request, category_id):
-    category = get_object_or_404(Category.objects.prefetch_related("book"), id=category_id)
+def books_in_category(request, pk):
+    category = get_object_or_404(Category.objects.prefetch_related("book"), id=pk)
     books = category.book.prefetch_related('author').order_by("placed_at")
     all_categories = Category.objects.all()
     context = {

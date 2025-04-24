@@ -12,10 +12,6 @@ class BookAdmin(admin.ModelAdmin):
     filter_horizontal = ['category', ]
     list_select_related = ['author']
 
-    def get_category(self, obj):
-        return " | ".join([c.title for c in obj.category.all()])
-    get_category.short_description='دسته بندی ها'
-
 
 class BookCountFilter(admin.SimpleListFilter):
     title = 'تعداد کتاب'
