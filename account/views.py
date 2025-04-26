@@ -140,7 +140,7 @@ class CustomLoginView(LoginView):
 
 class CreateBookView(LoginRequiredMixin, StaffRequiredMixin, CreateView):
     model = Book
-    fields = ['title', 'description', 'author', 'category', 'image']
+    fields = ['title', 'short_description', 'full_description', 'author', 'category', 'image']
     template_name = 'account/book_form.html'
     success_url = reverse_lazy('account:book_list')
 
@@ -170,6 +170,9 @@ class CategoryListView(LoginRequiredMixin, StaffRequiredMixin, ListView):
 class LoanListView(LoginRequiredMixin, StaffRequiredMixin, ListView):
     model = Loan
     template_name = 'account/loan_list.html'
+
+    def get_queryset(self):
+        return Loan.objects.order_by("-borrowed_on")
 
 
 class CreateLoanView(LoginRequiredMixin, StaffRequiredMixin, CreateView):

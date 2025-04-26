@@ -2,7 +2,6 @@ from datetime import timedelta
 from django.utils import timezone
 from django.db import models
 from django.urls import reverse
-
 from account.models import Member
 from extensions.utils import jalali_converter
 
@@ -33,7 +32,8 @@ class Author(models.Model):
 
 class Book(models.Model):
     title = models.CharField(max_length=128, unique=True, verbose_name='عنوان')
-    description = models.TextField(blank=True, verbose_name='توضیحات')
+    short_description = models.TextField(blank=True, verbose_name='معرفی کوتاه')
+    full_description = models.TextField(verbose_name='توضیحات' , null=True, blank=True)
     author = models.ForeignKey(Author, on_delete=models.SET_NULL, null=True, verbose_name='نویسنده')
     category = models.ManyToManyField(Category, verbose_name='دسته بندی ها', related_name='book')
     image = models.ImageField(default='no-image-available-icon-vector.jpg', blank=True, verbose_name='تصویر')
@@ -58,6 +58,7 @@ class Book(models.Model):
 
     def is_available(self):
         return not Loan.objects.filter(book=self, status__in=['b', 'o']).exists()
+
 
 class Loan(models.Model):
     STATUS_CHOICES = [
