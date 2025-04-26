@@ -3,7 +3,7 @@ from .models import Book, Category
 
 
 def main_page(request):
-    search = request.GET.get("search")
+    search = request.GET.get("q")
     if search:
         books = Book.objects.select_related('author').filter(title__icontains=search)
         context = {
@@ -24,8 +24,10 @@ def main_page(request):
 
 def book_info(request, pk):
     book = get_object_or_404(Book, id=pk)
+    categories = Category.objects.all()
     context = {
         'book': book,
+        'categories': categories,
     }
 
     return render(request, 'library/book_info.html', context)
