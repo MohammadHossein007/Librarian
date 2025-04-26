@@ -1,76 +1,50 @@
-{% load static %}
-<div class="container">
-      <div class="section_nav">
-        <div class="left_nav d-flex sass align-items-center">
-          <div class="section-log d-flex align-items-center">
-            <div class="box-img-log">
-              <!-- <img src="img/image.png" width="50" height="50" alt=""> -->
-            </div>
-          </div>
-        </div>
-        <div class="center_nav">
-          <ul class="d-flex gap-3rem align-items-center">
-            <li>
-                {% if not request.user.is_authenticated %}
-                    <a href="{% url 'account:login' %}" class="active">ورود</a>
-                    <a href="{% url 'account:register' %}" class="active">ثبت نام</a>
-                {% elif request.user.is_staff %}
-                <a href="{% url 'account:dashboard' %}" class="active">پنل مدیریت</a>
-                {% else %}
-                <a href="{% url 'account:profile' %}" class="active">پروفایل</a>
-                {% endif %}
-            </li>
+<header class="bg-white shadow-md py-4 px-6 flex items-center justify-between flex-wrap gap-4">
 
-            <!-- <li><a href="#">Messages</a></li> -->
-            <li><a class="aboutcolor" href="#">دباره ما</a></li>
-            <li onclick="image()" class="second aboutcolor">
-              دسته بندی
-              <div id="ganr">
-                {% for category in categories %}
-                <a href="{% url 'library:books_by_category' category.id %}">{{ category.title }}</a>
-                {% endfor %}
-              </div>
-
-              <img
-                id="img"
-                width="21"
-                height="17"
-                src="{% static 'library/image/Screenshot 2024-12-16 193324.png' %}"
-                alt=""
-              />
-            </li>
-          </ul>
+  <div class="flex items-center gap-6">
+     <a href="/">
+        <div class="text-blue-600 text-2xl font-bold">
+          کتابدار
         </div>
-        <div class="right_nav">
-          <div class="icon">
-            <form class="icon_form" method="get" action="{% url 'library:main_page' %}">
-              <label for="search"></label>
-              <input required type="text" placeholder="جستجو..." name="search" id="search" />
-              <button class="button" type="submit">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="20"
-                  height="20"
-                  fill="currentColor"
-                  class="bi bi-search"
-                  viewBox="0 0 16 16"
-                  id="IconChangeColor"
-                >
-                  <path
-                    d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"
-                    id="mainIconPathAttribute"
-                    fill="#000000"
-                  ></path>
-                </svg>
-              </button>
-            </form>
-          </div>
-          <div class="user_section">
-            <a class="status-connection" href="/">کتابدار</a>
-            <!-- <div class="profile_user">
-                        <img src="img/team4.png" alt="">
-                    </div> -->
-          </div>
-        </div>
+    </a>
+    <!-- Dropdown Menu -->
+    <div class="relative group">
+      <button class="text-gray-700 font-medium hover:text-blue-600 transition">
+        دسته‌بندی‌ها
+      </button>
+      <div class="absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded-xl shadow-lg opacity-0 group-hover:opacity-100 group-hover:visible invisible transition-opacity duration-200 z-50">
+        <ul class="py-2 text-sm text-gray-700">
+          {% for category in categories %}
+          <li>
+            <a href="{% url 'library:books_by_category' category.id %}" class="block px-4 py-2 hover:bg-blue-50 hover:text-blue-600">
+              {{ category.title }}
+            </a>
+          </li>
+          {% empty %}
+          <li class="px-4 py-2 text-gray-400">دسته‌ای وجود ندارد</li>
+          {% endfor %}
+        </ul>
       </div>
-</div>
+    </div>
+  </div>
+
+  <!-- Middle Section: Search -->
+  <form action="{% url 'library:main_page' %}" method="get" class="flex-grow max-w-xl mx-auto">
+    <input type="text" name="q" placeholder="جستجوی کتاب..."
+      class="w-full border border-blue-300 rounded-full px-6 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400 text-sm text-gray-700 placeholder-gray-400" />
+  </form>
+
+  <!-- Left Section: Auth Buttons -->
+  <div class="flex items-center gap-4 text-sm">
+    {% if user.is_authenticated %}
+      {% if user.is_superuser %}
+        <a href="{% url 'account:dashboard' %}" class="bg-blue-600 text-white px-4 py-1.5 rounded-full hover:bg-blue-700 transition">پنل مدیریت</a>
+      {% else %}
+        <a href="{% url 'account:profile' %}" class="bg-blue-600 text-white px-4 py-1.5 rounded-full hover:bg-blue-700 transition">پروفایل</a>
+      {% endif %}
+    {% else %}
+      <a href="{% url 'account:login' %}" class="text-blue-600 hover:underline">ورود</a>
+      <a href="{% url 'account:register' %}" class="bg-blue-600 text-white px-4 py-1.5 rounded-full hover:bg-blue-700 transition">ثبت‌نام</a>
+    {% endif %}
+  </div>
+
+</header>

@@ -11,65 +11,41 @@
 </head>
 <body class="bg-gray-200">
 
-
-<!-- start navbar -->
 {% include './navbar.html' %}
-<!-- end navbar -->
 
-<!-- strat wrapper -->
-<div class="h-screen flex justify-start" >
-    
-    <!-- start sidebar -->  
+<div class="h-screen flex flex-row flex-wrap" >
+
     {% include "./sidebar.html" %}
-    <!-- end sidebar -->  
-    <!-- strat content -->
-    <div class="bg-gray-100 flex-1 p-6 md:mt-16">
-        <div class="card">
 
-    <div class="card-body h-screen">
-        <div class="flex justify-between">
-            <h2 class="font-bold text-lg mb-10">دسته بندی ها</h2>
-            <a href="{% url 'account:add_category' %}" class="btn h-10">افزودن دسته بندی</a>
+    <div class="bg-gray-100 flex-1 p-6">
+        <div class="card h-full">
+            <div class="card-body h-full">
+                <div class="flex justify-between">
+                    <h2 class="font-bold text-lg mb-10">دسته بندی ها</h2>
+                    <a href="{% url 'account:add_category' %}" class="btn h-10">افزودن دسته بندی</a>
+                </div>
+                <table class="w-full border border-gray-300 rounded-lg overflow-hidden shadow-lg">
+                    <thead class="bg-gray-100 text-gray-700 text-sm w-full">
+                        <tr class="border-b border-gray-300">
+                            <th class="py-3 px-4 font-semibold text-right">عکس</th>
+                            <th class="py-3 px-4 font-semibold text-right">نام دسته بندی</th>
+                            <th class="py-3 px-4 font-semibold text-right">تعداد کتاب</th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-gray-700 text-sm divide-y divide-gray-300">
+                        {% for category in object_list %}
+                        <tr class="hover:bg-gray-50 transition duration-200">
+                            <td class="py-3 px-4 font-medium text-right w-1/12"><img src="{{  category.image.url }}" alt=""></td>
+                            <td class="py-3 px-4 text-right">{{ category.title }}</td>
+                            <td class="py-3 px-4 text-right">{{ category.books_num }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
         </div>
-
-    <!-- start a table -->
-<table class="w-full border border-gray-300 rounded-lg overflow-hidden shadow-lg">
-    <!-- table head -->
-    <thead class="bg-gray-100 text-gray-700 text-sm w-full">
-        <tr class="border-b border-gray-300">
-            <th class="py-3 px-4 font-semibold text-right">عکس</th>
-            <th class="py-3 px-4 font-semibold text-right">نام دسته بندی</th>
-            <th class="py-3 px-4 font-semibold text-right">تعداد کتاب</th>
-        </tr>
-    </thead>
-    <!-- end table head -->
-
-    <!-- table body -->
-    <tbody class="text-gray-700 text-sm divide-y divide-gray-300">
-        {% for category in object_list %}
-        <tr class="hover:bg-gray-50 transition duration-200">
-            <!-- name -->
-            <td class="py-3 px-4 font-medium text-right w-1/12"><img src="{{  category.image.url }}" alt=""></td>
-            <td class="py-3 px-4 text-right">{{ category.title }}</td>
-            <td class="py-3 px-4 text-right">{{ category.books_num }}</td>
-        </tr>
-        {% endfor %}
-    </tbody>
-    <!-- end table body -->
-</table>
-
-    <!-- end a table -->
     </div>
-
 </div>
-    </div>
-    <!-- end content -->
-
-</div>
-<!-- end wrapper --> 
-
-  
-
 <!-- script -->
 <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 <script src={% static "account/js/scripts.js" %}></script>

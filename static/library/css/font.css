@@ -6,3 +6,8 @@
     font-family: "moraba";
     src: url(../font/Morabba/woff2/Morabba-Light.woff2);
 }
+*{
+    font-family: "moraba", serif;
+    font-weight: bold;
+    font-size: 1.1rem;
+}

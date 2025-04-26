@@ -1,48 +1,51 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fa" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>نتایج جست‌وجو</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="{% static 'library/css/font.css' %}" />
+  </head>
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ category.title }}</title>
-    <link rel="stylesheet" href="{% static 'library/css/category_style.css' %}">
-    <link rel="stylesheet" href="{% static 'library/css/font.css' %}">
-</head>
+  <body class="min-h-screen flex flex-col bg-gray-50 text-gray-800 font-sans leading-relaxed">
 
-<body class=" body">
     {% include "library/header.html" %}
-    <div class="main m">
-        <div class="ganr2">
-            <h2>
-                <span>نتایج جست و جو برای {{ search }}</span>
-            </h2>
-        </div>
-        <div>
-        {% if books %}
-            <div class="tarikhi">
-                {% for book in books %}
-                    <a class="book " href="{% url 'library:book_info' book.id %}">
-                        <img class="book_image" src="{{ book.image.url }}" width="120" height="120" alt="">
-                        <div class="info">
-                            <h4>کتاب {{ book.title }}</h4>
-                            <h4>{{book.author}}</h4>
-                        </div>
-                    </a>
-                {% endfor %}
-            </div>
-            {% else %}
-                <h4>هیج کتابی با این اسم پیدا نشد</h4>
-            {% endif %}
 
-        </div>
+    <main class="flex-grow container mx-auto px-4 sm:px-6 lg:px-12 py-10">
+      <div class="border-b border-gray-300 pb-4 mb-6">
+        <h2 class="text-xl sm:text-2xl font-bold text-gray-700">
+          نتایج جست‌وجو برای:
+          <span class="text-indigo-600 font-extrabold">{{ search }}</span>
+        </h2>
+      </div>
 
-    </div>
+      {% if books %}
+      <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
+        {% for book in books %}
+        <a href="{% url 'library:book_info' book.id %}"
+           class="bg-white rounded-xl shadow-sm hover:shadow-md hover:-translate-y-1 transition p-3 flex flex-col items-center text-center">
+          <img src="{{ book.image.url }}"
+               alt="{{ book.title }}"
+               class="w-24 h-24 object-contain mb-3" />
+          <div>
+            <h4 class="text-sm font-semibold text-gray-700">کتاب {{ book.title }}</h4>
+            <p class="text-xs text-gray-500 mt-1">{{ book.author }}</p>
+          </div>
+        </a>
+        {% endfor %}
+      </div>
+      {% else %}
+      <div class="mt-12 text-center bg-red-50 border border-red-200 text-red-600 rounded-xl p-6 shadow">
+        <p class="text-lg font-semibold">هیچ کتابی با این نام پیدا نشد!</p>
+      </div>
+      {% endif %}
+    </main>
+
     {% include "library/footer.html" %}
 
-
-    <script src="{% static "library/js/category.js" %}"></script>
-</body>
-
+    <script src="{% static 'library/js/category.js' %}"></script>
+  </body>
 </html>

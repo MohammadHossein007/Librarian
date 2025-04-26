@@ -1,58 +1,128 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fa" dir="rtl">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ book.title }}</title>
-    <link rel="stylesheet" href="{% static 'library/css/book_info_style.css' %}">
-    <link rel="stylesheet" href="{% static 'library/css/font.css' %}">
-    <style>
-        .category{
-            display: flex;
-            flex-direction: row;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>کتابدار</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="{% static 'library/css/category_style.css' %}">
+  <link rel="stylesheet" href="{% static 'library/css/font.css' %}">
 </head>
 
-<body>
-    <div dir="rtl" class="book_information">
-        <div class="information">
-            <h1>اطلاعات کتاب</h1>
-            <h2>نام کتاب : {{ book.title }}</h2>
-            <h2>نویسنده : {{ book.author }}</h2>
-            <h2> تاریخ اضافه شدن : {{ book.jplaced_at }}</h2>
-            <div class="category">
-                <h2>دسته‌بندی:</h2>
-                {% for category in book.category.all %}
-                <h2>{{ category.title }}</h2>
-                {% endfor %}
-            </div>
-            {% if book.is_available %}
-                <h2>موجود است</h2>
-            {% else %}
-                <h2>موجود نیست</h2>
-            {% endif %}
+<body class="bg-gray-100 font-sans">
+{% include 'library/header.html' %}
+
+  <section class="flex justify-evenly items-center mt-32 px-6 flex-wrap gap-8">
+
+    <div class="flex gap-6">
+      <img src="{{ book.image.url }}" alt="پیرانزی" class="w-64 h-auto rounded-xl shadow-xl">
+
+      <div class="flex flex-col justify-around text-gray-600 space-y-3">
+        <div>
+          <h1 class="text-xl text-blue-600 underline mb-2">{{ book.title }}</h1>
+          <h3 class="underline">نویسنده: {{ book.author }}</h3>
+          <h3 class="underline">دسته‌بندی: {{ book.get_category }}</h3>
         </div>
-        <div class="login-img">
-            <img src="{{book.image.url}}" width="200" height="200" alt="">
-        </div>
-        <div class="description">
-            {{ book.description|linebreaks }}
-        </div>
+        <a href="#" class="border-2 border-blue-600 rounded-full px-8 py-1 w-fit text-center">دریافت نمونه کتاب</a>
+      </div>
     </div>
-    <a href="/">
-        <?xml version="1.0" encoding="utf-8"?>
-        <svg width="50px" class="svgDoor" height="50px" viewBox="0 0 24 24" fill="none"
-            xmlns="http://www.w3.org/2000/svg">
-            <path opacity="0.5"
-                d="M9.052 4.5C9 5.07763 9 5.80355 9 6.72183V17.2781C9 18.1964 9 18.9224 9.05201 19.5H8C5.64298 19.5 4.46447 19.5 3.73223 18.7678C3 18.0355 3 16.857 3 14.5V9.5C3 7.14298 3 5.96447 3.73223 5.23223C4.46447 4.5 5.64298 4.5 8 4.5H9.052Z"
-                fill="#1C274C" />
-            <path fill-rule="evenodd" clip-rule="evenodd"
-                d="M9.70725 2.4087C9 3.03569 9 4.18259 9 6.4764V17.5236C9 19.8174 9 20.9643 9.70725 21.5913C10.4145 22.2183 11.4955 22.0297 13.6576 21.6526L15.9864 21.2465C18.3809 20.8288 19.5781 20.62 20.2891 19.7417C21 18.8635 21 17.5933 21 15.0529V8.94711C21 6.40671 21 5.13652 20.2891 4.25826C19.5781 3.37999 18.3809 3.17118 15.9864 2.75354L13.6576 2.34736C11.4955 1.97026 10.4145 1.78171 9.70725 2.4087ZM12.75 10.9535C12.75 10.52 12.4142 10.1686 12 10.1686C11.5858 10.1686 11.25 10.52 11.25 10.9535V13.0465C11.25 13.48 11.5858 13.8314 12 13.8314C12.4142 13.8314 12.75 13.48 12.75 13.0465V10.9535Z"
-                fill="#1C274C" />
-        </svg>
-    </a>
+
+    <!-- About Book -->
+    <div class="relative bg-blue-50 p-6 rounded-xl shadow-md w-96 text-gray-600">
+      <h1 class="text-lg text-blue-600 font-semibold mb-4">معرفی کتاب پیرانزی</h1>
+      <p>
+        {{ book.short_description }}
+      </p>
+      <div class="absolute w-28 h-28 bg-black/10 rounded-full top-4 left-4"></div>
+    </div>
+  </section>
+    <section class="mt-16 px-6 flex justify-center">
+      <div class="bg-white shadow-md rounded-xl p-6 w-full max-w-4xl text-gray-700 relative">
+        <h2 class="text-blue-600 text-lg font-semibold mb-4">درباره کتاب {{ book.title }}</h2>
+
+        {% if book.full_description %}
+          <p class="leading-7">
+            {{ book.full_description }}
+          </p>
+        {% else %}
+          <p class="italic text-gray-400">توضیحاتی برای این کتاب ثبت نشده است.</p>
+        {% endif %}
+
+        <div class="absolute w-24 h-24 bg-blue-100 rounded-full -top-6 -left-6 -z-10"></div>
+      </div>
+    </section>
+
+<!-- Comments Section -->
+<section class="mt-16 flex flex-col items-center gap-6 px-4">
+  <!-- Comment Form -->
+  <form action="#" method="get" class="w-full max-w-2xl bg-blue-200 p-4 rounded-xl">
+    <div class="flex flex-col space-y-2">
+      <input type="text" placeholder="ارسال نظرات..." class="w-full h-10 rounded-lg px-4 bg-blue-200 border-none outline-none">
+      <button type="submit" class="self-start bg-blue-600 text-white px-6 py-1 rounded-lg">ارسال</button>
+    </div>
+  </form>
+
+  <!-- Horizontal Comment Slider -->
+  <div class="w-full max-w-6xl overflow-x-auto py-4">
+    <div class="flex gap-6 w-max pr-4">
+
+      <!-- Single Comment Card -->
+      <div class="min-w-[20rem] bg-blue-200 rounded-xl p-4 flex flex-col gap-3 shadow-md">
+        <div class="flex items-center gap-3">
+          <img src="svg/people.svg" class="w-8 h-8 rounded-full" alt="">
+          <h5 class="text-sm">علی</h5>
+        </div>
+        <p class="text-gray-700 text-sm">
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dignissimos...
+        </p>
+      </div>
+
+        <div class="min-w-[20rem] bg-blue-200 rounded-xl p-4 flex flex-col gap-3 shadow-md">
+        <div class="flex items-center gap-3">
+          <img src="svg/people.svg" class="w-8 h-8 rounded-full" alt="">
+          <h5 class="text-sm">علی</h5>
+        </div>
+        <p class="text-gray-700 text-sm">
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dignissimos...
+        </p>
+      </div><div class="min-w-[20rem] bg-blue-200 rounded-xl p-4 flex flex-col gap-3 shadow-md">
+        <div class="flex items-center gap-3">
+          <img src="svg/people.svg" class="w-8 h-8 rounded-full" alt="">
+          <h5 class="text-sm">علی</h5>
+        </div>
+        <p class="text-gray-700 text-sm">
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dignissimos...
+        </p>
+      </div><div class="min-w-[20rem] bg-blue-200 rounded-xl p-4 flex flex-col gap-3 shadow-md">
+        <div class="flex items-center gap-3">
+          <img src="svg/people.svg" class="w-8 h-8 rounded-full" alt="">
+          <h5 class="text-sm">علی</h5>
+        </div>
+        <p class="text-gray-700 text-sm">
+          Lorem ipsum dolor sit amet, consectetur 
+            <br>adipisicing elit. Dignissimos...
+        </p>
+      </div>
+        
+      <!-- Copy this block to add more comments -->
+      <div class="min-w-[20rem] bg-blue-200 rounded-xl p-4 flex flex-col gap-3 shadow-md">
+        <div class="flex items-center gap-3">
+          <img src="svg/people.svg" class="w-8 h-8 rounded-full" alt="">
+          <h5 class="text-sm">علی</h5>
+        </div>
+        <p class="text-gray-700 text-sm">
+          این یه کامنت دیگه‌ست که توی اسلایدر هست. همه‌ چی عالیه 😊
+        </p>
+      </div>
+
+      <!-- و همین‌طور ادامه بده -->
+
+    </div>
+  </div>
+</section>
+{% include 'library/footer.html' %}
 </body>
 
 </html>

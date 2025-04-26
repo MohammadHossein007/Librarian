@@ -13,28 +13,32 @@
 </head>
 <body class="bg-gray-200">
 
-    {% include "./navbar.html" %}
+{% include './navbar.html' %}
 
-    <div class="h-screen flex justify-start " >
-        
-        {% include "./sidebar.html" %}
-        <div class="bg-gray-100 flex-1 p-6 w-screen flex flex-col">
-            <form method="post" enctype="multipart/form-data" class="pl-48 pr-16 pt-12">
-                {% csrf_token %}
-                {{ form.title|as_crispy_field }}
-                {{ form.description|as_crispy_field }}
-                {{ form.author|as_crispy_field }}
-                {{ form.category|as_crispy_field }}
-                {{ form.image|as_crispy_field }}
-                <button type="submit" class="btn-bs-success w-1/12">اضافه کردن</button>
-            </form>
+<div class="h-screen flex flex-row flex-wrap">
+
+    {% include "./sidebar.html" %}
+
+    <div class="bg-gray-200 flex-1 p-6">
+        <div class="card h-full">
+            <div class="card-body h-full bg-gray-100">
+                <form method="post" enctype="multipart/form-data" class="pl-48 pr-16 pt-12">
+                    {% csrf_token %}
+                    {{ form.title|as_crispy_field }}
+                    {{ form.short_description|as_crispy_field }}
+                    {{ form.full_description|as_crispy_field }}
+                    {{ form.author|as_crispy_field }}
+                    {{ form.category|as_crispy_field }}
+                    {{ form.image|as_crispy_field }}
+                    <button type="submit" class="btn-bs-success min-w-[120px]">اضافه کردن</button>
+                </form>
+            </div>
         </div>
     </div>
+</div>
 
-
-
-    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
-    <script src={% static "account/js/scripts.js" %}></script>
-
+<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+<script src={% static "account/js/scripts.js" %}></script>
 </body>
 </html>
+
