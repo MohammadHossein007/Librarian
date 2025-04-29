@@ -1,0 +1,68 @@
+<!doctype html>
+{% load static %}
+<html lang="en" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">  
+  <link rel="shortcut icon" href="{% static 'account/img/fav.png' %}" type="image/x-icon">  
+  <link rel="stylesheet" href="https://kit-pro.fontawesome.com/releases/v5.12.1/css/pro.min.css">
+  <link rel="stylesheet" type="text/css" href='{% static "account/css/style.css" %}'>  
+  <title>صفحه مدیریت</title>
+</head>
+<body class="bg-gray-200">
+
+
+<!-- start navbar -->
+{% include './navbar.html' %}
+<!-- end navbar -->
+
+<div class="h-screen flex flex-row flex-wrap">
+
+    {% include "./sidebar.html" %}
+
+    <div class="bg-gray-100 flex-1 p-6">
+        <div class="card h-full">
+            <div class="card-body h-full">
+                <div class="flex justify-between">
+                    <h2 class="font-bold text-lg mb-10">نظرات</h2>
+                </div>
+                <table class="min-w-full bg-gray-100">
+                  <thead class="bg-gray-200 text-gray-600 uppercase text-sm leading-normal">
+                    <tr>
+                      <th class="py-3 px-6 text-right">کتاب</th>
+                      <th class="py-3 px-6 text-right">کاربر</th>
+                      <th class="py-3 px-6 text-right">ایمیل</th>
+                      <th class="py-3 px-6 text-right">متن نظر</th>
+                      <th class="py-3 px-6 text-right">تاریخ</th>
+                      <th class="py-3 px-6 text-center"></th>
+                    </tr>
+                  </thead>
+                  <tbody class="text-gray-700 text-sm font-light">
+                  {% for comment in object_list %}
+                    <tr class="border-b border-gray-200 hover:bg-gray-50">
+                      <td class="py-3 px-6 text-right">{{ comment.book }}</td>
+                      <td class="py-3 px-6 text-right">{{ comment.user.first_name }} {{ comment.user.last_name }}</td>
+                      <td class="py-3 px-6 text-right">{{ comment.user.email }}</td>
+                      <td class="py-3 px-6 text-right truncate max-w-xs">{{ comment.text }}</td>
+                      <td class="py-3 px-6 text-right">{{ comment.jcreated_at }}</td>
+                      <td class="py-3 px-6 text-center">
+                        <a href="{% url 'adminpanel:comment_detail' comment.id %}"><button class="bg-blue-300 hover:bg-blue-400 text-gray-800 py-1 px-3 rounded-lg text-xs">مشاهده</button></a>
+                      </td>
+                    </tr>
+                    {% empty %}  
+                      <td class="py-3 px-4 text-center align-middle text-black -500 font-medium" colspan="7">هنوز هیچ نظری وجود ندارد</td>
+                    {% endfor %}
+                  </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+  
+
+<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+<script src={% static "account/js/scripts.js" %}></script>
+
+</body>
+</html>

@@ -4,6 +4,7 @@ from django.db import models
 from django.urls import reverse
 from account.models import Member
 from extensions.utils import jalali_converter
+from django.conf import settings
 
 
 class Category(models.Model):
@@ -28,6 +29,24 @@ class Author(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class Comment(models.Model):
+    user = models.ForeignKey(Member, on_delete=models.CASCADE , verbose_name="کاربر")
+    book = models.ForeignKey('library.Book', on_delete=models.CASCADE, related_name='comments', verbose_name="کتاب")
+    text = models.TextField(verbose_name='متن نظر')
+    created_at = models.DateField(auto_now_add=True, verbose_name='تاریخ')
+    is_approved = models.BooleanField(default=False, verbose_name='تاییدیه')
+
+    class Meta:
+        ordering = ['-created_at']
+
+    def __str__(self):
+        return f'Comment by {self.user.username} on {self.book.title}'
+
+    def jcreated_at(self):
+        return jalali_converter(self.created_at)
+
 
 
 class Book(models.Model):
@@ -66,8 +85,8 @@ class Loan(models.Model):
         ('r', 'برگردانده شده'),
         ('o', 'عقب افتاده'),
     ]
-    book = models.ForeignKey(Book, on_delete=models.PROTECT, verbose_name='کتاب')
-    member = models.ForeignKey(Member, on_delete=models.PROTECT, verbose_name='عضو')
+    book = models.ForeignKey(Book, on_delete=models.CASCADE, verbose_name='کتاب')
+    member = models.ForeignKey(Member, on_delete=models.CASCADE, verbose_name='عضو')
     borrowed_on = models.DateField(default=timezone.now , verbose_name='تاریخ بردن')
     return_by = models.DateField(verbose_name='تاریخ برگشت')
     status = models.CharField(max_length=32, choices=STATUS_CHOICES, default='b', verbose_name='وضعیت')
@@ -89,3 +108,17 @@ class Loan(models.Model):
         if not self.return_by:
             self.return_by = self.borrowed_on + timedelta(days=7)
         super().save(*args, **kwargs)
+
+
+class Wishlist(models.Model):
+    member = models.ForeignKey(Member, on_delete=models.CASCADE, verbose_name='عضو')
+    book = models.ForeignKey(Book, on_delete=models.CASCADE, verbose_name='کتاب')
+    created_at = models.DateTimeField(auto_now_add=True, verbose_name='تاریخ اضافه شدن')
+
+    class Meta:
+        verbose_name = 'لیست علاقه‌مندی'
+        verbose_name_plural = 'لیست علاقه‌مندی‌ها'
+        unique_together = ('member', 'book')
+
+    def __str__(self):
+        return f'{self.member.user.username} - {self.book.title}'

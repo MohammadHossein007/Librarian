@@ -1,0 +1,70 @@
+<!doctype html>
+{% load static %}
+<html lang="en" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">  
+  <link rel="shortcut icon" href="{% static 'account/img/fav.png' %}" type="image/x-icon">  
+  <link rel="stylesheet" href="https://kit-pro.fontawesome.com/releases/v5.12.1/css/pro.min.css">
+  <link rel="stylesheet" type="text/css" href='{% static "account/css/style.css" %}'>  
+  <title>صفحه مدیریت</title>
+</head>
+<body class="bg-gray-200">
+
+{% include './navbar.html' %}
+
+<div class="h-screen flex flex-row flex-wrap" >
+
+    {% include "./sidebar.html" %}
+
+    <div class="bg-gray-100 flex-1 p-6">
+        <div class="card h-full">
+            <div class="card-body h-full">
+                <div class="flex justify-between">
+                    <h2 class="font-bold text-lg mb-10">دسته بندی ها</h2>
+                    <a href="{% url 'adminpanel:add_category' %}" class="btn h-10">افزودن دسته بندی</a>
+                </div>
+                <table class="w-full border border-gray-300 rounded-lg overflow-hidden shadow-lg">
+                    <thead class="bg-gray-100 text-gray-700 text-sm w-full">
+                        <tr class="border-b border-gray-300">
+                            <th class="py-3 px-4 font-semibold text-right">عکس</th>
+                            <th class="py-3 px-4 font-semibold text-right">نام دسته بندی</th>
+                            <th class="py-3 px-4 font-semibold text-right">تعداد کتاب</th>
+                            <th class="py-3 px-4 font-semibold text-right"></th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-gray-700 text-sm divide-y divide-gray-300">
+                        {% for category in object_list %}
+                        <tr class="hover:bg-gray-50 transition duration-200">
+                            {% if category.image %}
+                                <td class="py-3 px-4 font-medium text-right w-1/12"><img src="{{  category.image.url }}" alt=""></td>
+                            {% else %}
+                                <td class="py-3 px-4 font-medium text-right w-1/12"><img src="{% static 'library/image/no-image-available-icon-vector.jpg' %}" alt=""></td>
+                            {% endif %}
+                            <td class="py-3 px-4 text-right">{{ category.title }}</td>
+                            <td class="py-3 px-4 text-right">{{ category.books_num }}</td>
+                            <td class="py-3 px-4 text-right">
+                            <a href="{% url 'adminpanel:delete_category' category.id %}" class="bg-red-500 text-white px-4 py-2 rounded-lg ml-2">
+                      حذف          
+                            </a>
+                            <a href="{% url 'adminpanel:update_category' category.id %}" class="bg-blue-500 text-white px-4 py-2 rounded-lg">
+                      ویرایش          
+                            </a>
+                            </td>
+                        {% empty %}
+                            <td class="py-3 px-4 text-center align-middle text-black -500 font-medium" colspan="7">هنوز دسته بندی ای وجود ندارد</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- script -->
+<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+<script src={% static "account/js/scripts.js" %}></script>
+<!-- end script -->
+
+</body>
+</html>

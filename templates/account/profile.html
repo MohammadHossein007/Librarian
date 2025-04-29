@@ -1,6 +1,6 @@
 <!doctype html>
 {% load static %}
-<html lang="en" dir="rtl">
+<html lang="fa" dir="rtl">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -11,33 +11,115 @@
 </head>
 <body class="bg-gray-200">
 
-
 <!-- start navbar -->
-{% include './navbar.html' %}
+{% include 'adminpanel/navbar.html' %}
 <!-- end navbar -->
 
-<!-- strat wrapper -->
 <div class="h-screen flex flex-row flex-wrap">
 
     <!-- start sidebar -->
-    {% include "./sidebar.html" %}
+    {% include "adminpanel/sidebar.html" %}
     <!-- end sidebar -->
 
-    <!-- strat content -->
-    <div class="bg-gray-100 flex-1 p-6">
-        <div class="grid grid-cols-4 gap-6 xl:grid-cols-1"></div>
+    <!-- start content -->
+    <div class="flex-1 p-6">
+
+        <h1 class="text-2xl font-bold text-gray-700 mb-6">پروفایل</h1>
+
+        <!-- user info -->
+        <div class="bg-white p-6 rounded-xl shadow mb-8">
+            <div class="flex flex-col md:flex-row items-center">
+                {% if user.profile_image %}
+                <img src="{{ user.profile_image.url }}" alt="" class="w-24 h-24 rounded-full mb-4 md:mb-0 md:mr-6">
+                {% else %}
+                <img src="{% static 'account/img/user.svg' %}" alt="" class="w-24 h-24 rounded-full mb-4 md:mb-0 md:mr-6">
+                {% endif %}
+                <div>
+                    <h2 class="text-xl font-semibold text-center mb-2">{{ user.username }}</h2>
+                    <p class="text-gray-500">{{ user.email }}</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- recent loans -->
+        <div class="bg-white p-6 rounded-xl shadow mb-8">
+            <h3 class="text-lg font-bold text-gray-700 mb-4">آخرین امانت‌ها</h3>
+            {% if recent_loans %}
+                <ul class="divide-y divide-gray-200">
+                    {% for loan in recent_loans %}
+                        <li class="py-3 flex justify-between items-center">
+                            <span>{{ loan.book.title }}</span>
+                            <span class="text-sm text-gray-500">{{ loan.jborrowed_on }}</span>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p class="text-gray-500">امانتی ثبت نشده است.</p>
+            {% endif %}
+        </div>
+
+        <!-- active loans -->
+        <div class="bg-white p-6 rounded-xl shadow mb-8">
+            <h3 class="text-lg font-bold text-gray-700 mb-4">امانت‌های فعال</h3>
+            {% if active_loans %}
+                <ul class="divide-y divide-gray-200">
+                    {% for loan in active_loans %}
+                        <li class="py-3 flex justify-between items-center">
+                            <span>{{ loan.book.title }}</span>
+                            <span class="text-sm text-gray-500">باید تا {{ loan.jreturn_by }} بازگردانده شود</span>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p class="text-gray-500">هیچ امانت فعالی ندارید.</p>
+            {% endif %}
+        </div>
+
+        <!-- wishlist -->
+        <div class="bg-white p-6 rounded-xl shadow mb-8">
+            <h3 class="text-lg font-bold text-gray-700 mb-4">لیست علاقه‌مندی‌ها</h3>
+            {% if wishlist %}
+                <ul class="divide-y divide-gray-200">
+                    {% for item in wishlist %}
+                        <li class="py-3 flex justify-between items-center">
+                            <span>{{ item.book.title }}</span>
+                            <a href="{{ item.book.get_absolute_url }}" class="text-blue-500 hover:underline text-sm">مشاهده کتاب</a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p class="text-gray-500">لیست علاقه‌مندی شما خالی است.</p>
+            {% endif %}
+        </div>
+
+        <!-- recent comments -->
+        <div class="bg-white p-6 rounded-xl shadow mb-8">
+            <h3 class="text-lg font-bold text-gray-700 mb-4">آخرین نظرات ثبت شده</h3>
+            {% if recent_comments %}
+                <ul class="divide-y divide-gray-200">
+                    {% for comment in recent_comments %}
+                        <li class="py-3">
+                            <p class="text-gray-700">{{ comment.text|truncatewords:15 }}</p>
+                            <div class="text-right text-xs text-gray-400 mt-1">{{ comment.jcreated_at }}</div>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p class="text-gray-500">نظری ثبت نکرده‌اید.</p>
+            {% endif %}
+        </div>
+
     </div>
+
     <!-- end content -->
 
 </div>
 <!-- end wrapper -->
 
 
-
-<!-- script -->
 <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 <script src={% static "account/js/scripts.js" %}></script>
-<!-- end script -->
+
 
 </body>
 </html>

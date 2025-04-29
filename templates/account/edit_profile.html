@@ -1,0 +1,66 @@
+<!doctype html>
+{% load static %}
+{% load crispy_forms_filters %}
+{% load tailwind_filters %}
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="shortcut icon" href="{% static 'account/img/fav.png' %}" type="image/x-icon">
+  <link rel="stylesheet" href="https://kit-pro.fontawesome.com/releases/v5.12.1/css/pro.min.css">
+  <link rel="stylesheet" type="text/css" href='{% static "account/css/style.css" %}'>
+  <title>صفحه مدیریت</title>
+</head>
+<body class="bg-gray-200">
+
+<!-- start navbar -->
+{% include 'adminpanel/navbar.html' %}
+<!-- end navbar -->
+
+<div class="h-screen flex flex-row flex-wrap">
+
+    <!-- start sidebar -->
+    {% include "adminpanel/sidebar.html" %}
+    <!-- end sidebar -->
+
+    <!-- start content -->
+    <div class="bg-gray-200 flex-1 p-6">
+        <div class="card h-full">
+            <div class="card-body h-full bg-gray-100 flex flex-row flex-wrap">
+                <div class="lg:w-5/6 mx-auto mt-16 lg:mt-0">
+                    <form method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        {{ form.username|as_crispy_field }}
+                        {{ form.first_name|as_crispy_field }}
+                        {{ form.last_name|as_crispy_field }}
+
+                        <div class="flex items-center space-x-4 mb-4">
+                            <div class="flex-1">
+                                {{ form.profile_image|as_crispy_field }}
+                            </div>
+                            <div class="w-24 h-24">
+                                {% if user.profile_image %}
+                                <img src="{{ user.profile_image.url }}" alt="Profile Image" class="w-24 h-24 rounded-full mb-4 md:mb-0 md:mr-6 mr-2">
+                                {% else %}
+                                <img src="{% static 'account/img/user.svg' %}" alt="Profile Image" class="w-24 h-24 rounded-full mb-4 md:mb-0 md:mr-6 mr-2">
+                                {% endif %}
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn-bs-success min-w-[120px]">ویرایش</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end content -->
+</div>
+<!-- end wrapper -->
+
+
+<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+<script src={% static "account/js/scripts.js" %}></script>
+
+
+</body>
+</html>

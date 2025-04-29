@@ -1,0 +1,122 @@
+<div class="flex flex-wrap flex-col right-0 md:right-auto md:left-0 bg-white border-r border-gray-300 p-6 w-64 shadow-xl z-30">
+    <div class="sticky top-0 pt-10 flex flex-col">
+
+        <div class="text-right hidden md:block mb-4">
+            <button id="sideBarHideBtn">
+                <i class="fas fa-times-circle"></i>
+            </button>
+        </div>
+
+        {% if request.user.is_staff %}
+
+        <p class="uppercase text-lg text-gray-900 font-bold tracking-wider">کتاب</p>
+        <hr class="mb-4">
+
+        <div class="m-2">
+            <a href="{% url 'adminpanel:book_list' %}" class="flex items-center mb-3 capitalize font-medium text-sm hover:text-teal-600 transition duration-500">
+                <i class="fas fa-book text-sm ml-2"></i> لیست کتاب‌ها
+            </a>
+        </div>
+
+        <div class="m-2">
+            <a href="{% url 'adminpanel:add_book' %}" class="flex items-center mb-3 capitalize font-medium text-sm hover:text-teal-600 transition duration-500">
+                <i class="fas fa-book-medical text-sm ml-2"></i> افزودن کتاب
+            </a>
+        </div>
+
+        <div class="m-2">
+            <a href="{% url 'adminpanel:category_list' %}" class="flex items-center mb-3 capitalize font-medium text-sm hover:text-teal-600 transition duration-500">
+                <i class="fas fa-list text-sm ml-2"></i> لیست دسته‌بندی
+            </a>
+        </div>
+
+        <div class="m-2">
+            <a href="{% url 'adminpanel:add_category' %}" class="flex items-center mb-3 capitalize font-medium text-sm hover:text-teal-600 transition duration-500">
+                <i class="fas fa-plus-square text-sm ml-2"></i> افزودن دسته‌بندی
+            </a>
+        </div>
+
+        <div class="m-2">
+            <a href="{% url 'adminpanel:author_list' %}" class="flex items-center mb-3 capitalize font-medium text-sm hover:text-teal-600 transition duration-500">
+                <i class="fas fa-user-edit text-sm ml-2"></i> لیست نویسنده‌ها
+            </a>
+        </div>
+
+        <div class="m-2">
+            <a href="{% url 'adminpanel:add_author' %}" class="flex items-center mb-3 capitalize font-medium text-sm hover:text-teal-600 transition duration-500">
+                <i class="fas fa-user-plus text-sm ml-2"></i> افزودن نویسنده
+            </a>
+        </div>
+
+        <p class="uppercase text-lg text-gray-900 font-bold tracking-wider mt-8">امانت</p>
+        <hr class="mb-4">
+
+        <div class="m-2">
+            <a href="{% url 'adminpanel:loan_list' %}" class="flex items-center mb-3 capitalize font-medium text-sm hover:text-teal-600 transition duration-500">
+                <i class="fas fa-list text-sm ml-2"></i> لیست امانت‌ها
+            </a>
+        </div>
+
+        <div class="m-2">
+            <a href="{% url 'adminpanel:add_loan' %}" class="flex items-center mb-3 capitalize font-medium text-sm hover:text-teal-600 transition duration-500">
+                <i class="fas fa-arrow-circle-up text-sm ml-2"></i> قرض دادن کتاب
+            </a>
+        </div>
+
+        <p class="uppercase text-lg text-gray-900 font-bold tracking-wider mt-8">نظرات</p>
+        <hr class="mb-4">
+
+        <div class="m-2">
+            <a href="{% url 'adminpanel:comment_list' %}" class="flex items-center mb-3 capitalize font-medium text-sm hover:text-teal-600 transition duration-500">
+                <i class="fas fa-comments text-sm ml-2"></i> نظرات
+            </a>
+        </div>
+            
+        <p class="uppercase text-lg text-gray-900 font-bold tracking-wider">کاربر</p>
+        <hr class="mb-4">
+        
+        <div class="m-2">
+            <a href="{% url 'account:edit_profile' user.membership_id %}" class="flex items-center mb-3 capitalize font-medium text-sm hover:text-indigo-600 transition duration-500">
+                <i class="fas fa-edit text-sm ml-2"></i>ویرایش پروفایل
+            </a>
+        </div>
+            
+        <div class="m-2">
+            <a href="{% url 'account:password_change' %}" class="flex items-center mb-3 capitalize font-medium text-sm hover:text-indigo-600 transition duration-500">
+                <i class="fas fa-key text-sm ml-2"></i>تغییر رمز عبور
+            </a>
+        </div>
+
+        {% elif request.user.is_authenticated %}
+
+        <p class="uppercase text-lg text-gray-900 font-bold tracking-wider">کاربر</p>
+        <hr class="mb-4">
+        
+        <div class="m-2">
+            <a href="{% url 'account:edit_profile' user.membership_id %}" class="flex items-center mb-3 capitalize font-medium text-sm hover:text-indigo-600 transition duration-500">
+                <i class="fas fa-edit text-sm ml-2"></i>ویرایش پروفایل
+            </a>
+        </div>
+            
+        <div class="m-2">
+            <a href="{% url 'account:password_change' %}" class="flex items-center mb-3 capitalize font-medium text-sm hover:text-indigo-600 transition duration-500">
+                <i class="fas fa-key text-sm ml-2"></i>تغییر رمز عبور
+            </a>
+        </div>    
+            
+        <div class="m-2">
+            <a href="{% url 'account:books' %}" class="flex items-center mb-3 capitalize font-medium text-sm hover:text-indigo-600 transition duration-500">
+                <i class="fas fa-book-reader text-sm ml-2"></i> کتاب‌های من
+            </a>
+        </div>
+
+        <div class="m-2">
+            <a href="{% url 'account:wishlist' %}" class="flex items-center mb-3 capitalize font-medium text-sm hover:text-indigo-600 transition duration-500">
+                <i class="fas fa-heart text-sm ml-2"></i> لیست علاقه‌مندی
+            </a>
+        </div>
+
+        {% endif %}
+        
+    </div>
+</div>

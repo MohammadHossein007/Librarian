@@ -37,7 +37,7 @@
   <div class="flex items-center gap-4 text-sm">
     {% if user.is_authenticated %}
       {% if user.is_superuser %}
-        <a href="{% url 'account:dashboard' %}" class="bg-blue-600 text-white px-4 py-1.5 rounded-full hover:bg-blue-700 transition">پنل مدیریت</a>
+        <a href="{% url 'adminpanel:dashboard' %}" class="bg-blue-600 text-white px-4 py-1.5 rounded-full hover:bg-blue-700 transition">پنل مدیریت</a>
       {% else %}
         <a href="{% url 'account:profile' %}" class="bg-blue-600 text-white px-4 py-1.5 rounded-full hover:bg-blue-700 transition">پروفایل</a>
       {% endif %}

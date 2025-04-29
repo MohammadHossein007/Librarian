@@ -1,0 +1,86 @@
+<!doctype html>
+{% load static %}
+<html lang="en" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="shortcut icon" href="{% static 'account/img/fav.png' %}" type="image/x-icon">
+  <link rel="stylesheet" href="https://kit-pro.fontawesome.com/releases/v5.12.1/css/pro.min.css">
+  <link rel="stylesheet" type="text/css" href='{% static "account/css/style.css" %}'>
+  <title>صفحه مدیریت</title>
+</head>
+<body class="bg-gray-200">
+
+
+<!-- start navbar -->
+{% include 'adminpanel/navbar.html' %}
+<!-- end navbar -->
+
+<!-- strat wrapper -->
+<div class="h-screen flex flex-row flex-wrap">
+
+    <!-- start sidebar -->
+    {% include "adminpanel/sidebar.html" %}
+    <!-- end sidebar -->
+
+    <!-- strat content -->
+    <div class="bg-gray-200 flex-1 p-6">
+        <div class="card h-full">
+            <div class="card-body h-full bg-gray-100">
+                <div class="flex flex-col p-6 mr-4">
+                    <h1 class="text-2xl font-semibold text-gray-800 mb-4">کتاب‌های من</h1>
+
+                    <div class="grid grid-cols-4 md:grid-cols-2 lg:grid-cols-3 gap-16">
+                        {% for book in books %}
+                        <div class="bg-white shadow-lg rounded-lg p-4">
+                            <div class="w-full h-56 bg-gray-200 rounded-lg overflow-hidden mb-4">
+                                {% if book.image %}
+                                <img src="{{ book.image.url }}" alt="{{ book.title }}" class="w-full h-full object-cover">
+                                {% else %}
+                                <div class="flex items-center justify-center h-full text-gray-400">تصویر موجود نیست</div>
+                                {% endif %}
+                            </div>
+
+                            <h2 class="text-xl font-semibold text-gray-800">{{ book.title }}</h2>
+                            <p class="text-gray-600">نویسنده: {{ book.author }}</p>
+                            <p class="text-gray-500">وضعیت:
+                                {% if book.loan_set.exists %}
+                                    {% if book.loan_set.first.status == 'o' %}
+                                        <span class="text-red-500">معوق</span>
+                                    {% elif book.loan_set.first.status == 'b' %}
+                                        <span class="text-yellow-500">امانت</span>
+                                    {% else %}
+                                        <span class="text-green-500">بازگشت داده شده</span>
+                                    {% endif %}
+                                {% else %}
+                                    <span class="text-gray-400">دستیابی ندارید</span>
+                                {% endif %}
+                            </p>
+
+                            <a href="{% url 'library:book_info' book.id %}" class="mt-4 inline-block bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600">
+                                مشاهده جزئیات
+                            </a>
+                        </div>
+                        {% empty %}
+                        <p class="text-gray-500">شما هیچ کتابی ندارید.</p>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end content -->
+</div>
+<!-- end wrapper -->
+
+
+
+<!-- script -->
+<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+<script src={% static "account/js/scripts.js" %}></script>
+<!-- end script -->
+
+</body>
+</html>
+
+

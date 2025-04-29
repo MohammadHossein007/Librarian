@@ -1,4 +1,6 @@
 {% load static %}
+{% load crispy_forms_tags %}
+
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 
@@ -17,7 +19,7 @@
   <section class="flex justify-evenly items-center mt-32 px-6 flex-wrap gap-8">
 
     <div class="flex gap-6">
-      <img src="{{ book.image.url }}" alt="پیرانزی" class="w-64 h-auto rounded-xl shadow-xl">
+      <img src="{{ book.image.url }}" alt="" class="w-64 h-auto rounded-xl shadow-xl">
 
       <div class="flex flex-col justify-around text-gray-600 space-y-3">
         <div>
@@ -25,7 +27,28 @@
           <h3 class="underline">نویسنده: {{ book.author }}</h3>
           <h3 class="underline">دسته‌بندی: {{ book.get_category }}</h3>
         </div>
-        <a href="#" class="border-2 border-blue-600 rounded-full px-8 py-1 w-fit text-center">دریافت نمونه کتاب</a>
+            <div class="mt-6">
+        {% if request.user.is_authenticated %}
+            {% if is_in_wishlist %}
+                <form method="post" action="{% url 'account:remove_from_wishlist' book.pk %}">
+                    {% csrf_token %}
+                    <input type="hidden" name="next" value="{{ request.path }}">
+                    <button type="submit" class="bg-red-500 text-white py-2 px-4 rounded hover:bg-red-700">
+                        حذف از لیست علاقه‌مندی‌ها
+                    </button>
+                </form>
+            {% else %}
+                <form method="post" action="{% url 'library:add_to_wishlist' book.pk %}">
+                    {% csrf_token %}
+                    <button type="submit" class="bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700">
+                        اضافه کردن به لیست علاقه‌مندی‌ها
+                    </button>
+                </form>
+            {% endif %}
+        {% else %}
+            <p class="text-gray-500 text-center">برای افزودن به لیست علاقه‌مندی‌ها، ابتدا وارد حساب کاربری خود شوید.</p>
+        {% endif %}
+    </div>
       </div>
     </div>
 
@@ -38,13 +61,14 @@
       <div class="absolute w-28 h-28 bg-black/10 rounded-full top-4 left-4"></div>
     </div>
   </section>
+
     <section class="mt-16 px-6 flex justify-center">
       <div class="bg-white shadow-md rounded-xl p-6 w-full max-w-4xl text-gray-700 relative">
         <h2 class="text-blue-600 text-lg font-semibold mb-4">درباره کتاب {{ book.title }}</h2>
 
         {% if book.full_description %}
           <p class="leading-7">
-            {{ book.full_description }}
+            {{ book.full_description|linebreaksbr }}
           </p>
         {% else %}
           <p class="italic text-gray-400">توضیحاتی برای این کتاب ثبت نشده است.</p>
@@ -55,73 +79,55 @@
     </section>
 
 <!-- Comments Section -->
-<section class="mt-16 flex flex-col items-center gap-6 px-4">
-  <!-- Comment Form -->
-  <form action="#" method="get" class="w-full max-w-2xl bg-blue-200 p-4 rounded-xl">
-    <div class="flex flex-col space-y-2">
-      <input type="text" placeholder="ارسال نظرات..." class="w-full h-10 rounded-lg px-4 bg-blue-200 border-none outline-none">
-      <button type="submit" class="self-start bg-blue-600 text-white px-6 py-1 rounded-lg">ارسال</button>
-    </div>
-  </form>
+<section class="mt-16 flex flex-col items-center gap-12 px-4">
 
-  <!-- Horizontal Comment Slider -->
-  <div class="w-full max-w-6xl overflow-x-auto py-4">
+  {% if request.user.is_authenticated %}
+    <!-- Comment Form -->
+    <form method="post" class="w-full max-w-xl bg-white border border-gray-200 p-4 rounded-xl shadow-md">
+      {% csrf_token %}
+      <div class="flex flex-col space-y-4">
+        {{ form|crispy }}
+        <button type="submit" class="self-end bg-blue-600 hover:bg-blue-700 transition-colors text-white font-semibold px-6 py-1.5 rounded-md shadow-sm text-sm">
+          ارسال نظر
+        </button>
+      </div>
+    </form>
+  {% else %}
+    <div class="w-full max-w-2xl text-center bg-yellow-100 border border-yellow-300 p-4 rounded-xl shadow-sm">
+      <p class="text-yellow-800 font-medium">برای ثبت نظر، ابتدا وارد حساب کاربری خود شوید.</p>
+    </div>
+  {% endif %}
+
+  <!-- Comments Section -->
+  <div class="w-full max-w-6xl overflow-x-auto py-6">
     <div class="flex gap-6 w-max pr-4">
 
-      <!-- Single Comment Card -->
-      <div class="min-w-[20rem] bg-blue-200 rounded-xl p-4 flex flex-col gap-3 shadow-md">
-        <div class="flex items-center gap-3">
-          <img src="svg/people.svg" class="w-8 h-8 rounded-full" alt="">
-          <h5 class="text-sm">علی</h5>
+      {% for comment in comments %}
+      <div class="min-w-[18rem] max-w-xs bg-white border border-gray-200 rounded-2xl p-6 flex flex-col gap-4 shadow-md hover:shadow-xl transition-shadow">
+        <div class="flex items-center gap-4">
+          <img src="{% static 'svg/people.svg' %}" class="w-10 h-10 rounded-full object-cover" alt="User">
+          <h5 class="text-gray-900 font-semibold text-base">
+            {{ comment.user.first_name }} {{ comment.user.last_name }}
+          </h5>
         </div>
-        <p class="text-gray-700 text-sm">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dignissimos...
+        <p class="text-gray-700 text-sm leading-relaxed">
+          {{ comment.text|linebreaksbr }}
         </p>
       </div>
-
-        <div class="min-w-[20rem] bg-blue-200 rounded-xl p-4 flex flex-col gap-3 shadow-md">
-        <div class="flex items-center gap-3">
-          <img src="svg/people.svg" class="w-8 h-8 rounded-full" alt="">
-          <h5 class="text-sm">علی</h5>
-        </div>
-        <p class="text-gray-700 text-sm">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dignissimos...
-        </p>
-      </div><div class="min-w-[20rem] bg-blue-200 rounded-xl p-4 flex flex-col gap-3 shadow-md">
-        <div class="flex items-center gap-3">
-          <img src="svg/people.svg" class="w-8 h-8 rounded-full" alt="">
-          <h5 class="text-sm">علی</h5>
-        </div>
-        <p class="text-gray-700 text-sm">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dignissimos...
-        </p>
-      </div><div class="min-w-[20rem] bg-blue-200 rounded-xl p-4 flex flex-col gap-3 shadow-md">
-        <div class="flex items-center gap-3">
-          <img src="svg/people.svg" class="w-8 h-8 rounded-full" alt="">
-          <h5 class="text-sm">علی</h5>
-        </div>
-        <p class="text-gray-700 text-sm">
-          Lorem ipsum dolor sit amet, consectetur 
-            <br>adipisicing elit. Dignissimos...
-        </p>
+      {% empty %}
+      <div class="text-gray-500 text-center w-full">
+        هنوز نظری ثبت نشده است.
       </div>
-        
-      <!-- Copy this block to add more comments -->
-      <div class="min-w-[20rem] bg-blue-200 rounded-xl p-4 flex flex-col gap-3 shadow-md">
-        <div class="flex items-center gap-3">
-          <img src="svg/people.svg" class="w-8 h-8 rounded-full" alt="">
-          <h5 class="text-sm">علی</h5>
-        </div>
-        <p class="text-gray-700 text-sm">
-          این یه کامنت دیگه‌ست که توی اسلایدر هست. همه‌ چی عالیه 😊
-        </p>
-      </div>
-
-      <!-- و همین‌طور ادامه بده -->
+      {% endfor %}
 
     </div>
   </div>
+
 </section>
+
+
+
+
 {% include 'library/footer.html' %}
 </body>
 

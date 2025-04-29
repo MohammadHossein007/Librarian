@@ -41,13 +41,14 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'jalali_date',
     'library.apps.LibraryConfig',
     'account.apps.AccountConfig',
+    'adminpanel.apps.AdminpanelConfig',
     'extensions',
     'debug_toolbar',
     "crispy_forms",
     "crispy_tailwind",
+    'jalali_date',
 ]
 
 MIDDLEWARE = [

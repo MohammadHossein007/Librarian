@@ -1,0 +1,41 @@
+<!doctype html>
+{% load static %}
+<html lang="en" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="shortcut icon" href="{% static 'account/img/fav.png' %}" type="image/x-icon">
+  <link rel="stylesheet" href="https://kit-pro.fontawesome.com/releases/v5.12.1/css/pro.min.css">
+  <link rel="stylesheet" type="text/css" href='{% static "account/css/style.css" %}'>
+  <title>صفحه مدیریت</title>
+</head>
+<body class="bg-gray-200">
+
+
+{% include './navbar.html' %}
+
+<div class="h-screen flex flex-row flex-wrap">
+
+  {% include "./sidebar.html" %}
+
+  <div class="flex-1 flex justify-center items-center mb-84">
+    <div class="bg-white p-8 rounded-lg shadow-md">
+      <h2 class="text-lg font-semibold mb-4">آیا از حذف کردن کتاب مطمئن هستید؟</h2>
+
+      <form method="post" class="flex ">
+        {% csrf_token %}
+        <button type="submit" class="bg-green-500 text-white px-4 rounded-lg w-1/2">
+          حذف
+        </button>
+       <a href="{% url 'adminpanel:book_list' %}" class="block mr-2 px-4 py-2 bg-red-500 rounded-lg w-1/2 text-center text-white">انصراف</a>
+      </form>
+    </div>
+  </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+<script src={% static "account/js/scripts.js" %}></script>
+
+</body>
+</html>

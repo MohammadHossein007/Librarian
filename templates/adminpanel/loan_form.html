@@ -1,0 +1,57 @@
+{% load crispy_forms_filters %}
+{% load tailwind_filters %}
+{% load static %}
+<!doctype html>
+<html lang="en" dir="rtl">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="shortcut icon" href='{% static "account/img/fav.png" %}' type="image/x-icon">
+    <link rel="stylesheet" href="https://kit-pro.fontawesome.com/releases/v5.12.1/css/pro.min.css">
+    <link rel="stylesheet" type="text/css" href={% static "account/css/style.css" %}>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>صفحه مدیریت</title>
+</head>
+<body class="bg-gray-200">
+    {% include './navbar.html' %}
+    <div class="h-screen flex justify-start" >
+        {% include "./sidebar.html" %}
+        <div class="bg-gray-100 w-screen flex-1 p-6 flex flex-col ">
+            {% if form.non_field_errors %}
+                <div class="m-10 p-4 bg-red-100 border border-red-400 text-red-700 rounded col-span-2 text-center flex flex-row justify-center gap-4 items-center">
+                    {% for error in form.non_field_errors %}
+                        <p class="text-sm text-red-700">{{ error }}</p>
+                        <button type="button" class="ml-4 text-xl text-gray-500 hover:text-gray-800 focus:outline-none close-message">
+                        &times;
+                        </button>
+                    {% endfor %}
+                </div>
+            {% endif %}
+            <form method="post" enctype="multipart/form-data" class="m-10 grid grid-cols-2 gap-4">
+                {% csrf_token %}
+                <div class="flex flex-col">
+                    {{ form.member|as_crispy_field }}
+                </div>
+                <div class="flex flex-col">
+                    {{ form.book|as_crispy_field }}
+                </div>
+                <div class="flex flex-col mt-3">
+                    <button type="submit" class="btn-bs-success w-1/6">اضافه کردن</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    <script src={% static "account/js/scripts.js" %}></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        const closeButtons = document.querySelectorAll('.close-message');
+        closeButtons.forEach(function (btn) {
+          btn.addEventListener('click', function () {
+            this.parentElement.style.display = 'none';
+          });
+        });
+      });
+    </script>
+</body>
+</html>

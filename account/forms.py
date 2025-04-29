@@ -6,16 +6,6 @@ from account.models import Member
 from library.models import Loan, Book
 
 
-class CreateLoanForm(forms.ModelForm):
-    class Meta:
-        model = Loan
-        fields = ['member', 'book']
-
-    def __init__(self, *args, **kwargs):
-        super(CreateLoanForm, self).__init__(*args, **kwargs)
-        self.fields['book'].queryset = Book.objects.filter(~Q(loan__status__in =['b','o']))
-
-
 class CustomLoginForm(AuthenticationForm):
     def __init__(self, *args, **kwargs):
         super(CustomLoginForm, self).__init__(*args, **kwargs)
@@ -29,7 +19,7 @@ class CustomLoginForm(AuthenticationForm):
         })
 
 
-class EmailPasswordForm(forms.Form):
+class EmailForm(forms.Form):
     email = forms.EmailField()
     email.widget.attrs.update({
         'class': 'w-full outline-none text-sm bg-transparent',

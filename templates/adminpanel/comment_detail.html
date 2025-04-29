@@ -1,0 +1,73 @@
+<!doctype html>
+{% load static %}
+<html lang="en" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">  
+  <link rel="shortcut icon" href="{% static 'account/img/fav.png' %}" type="image/x-icon">  
+  <link rel="stylesheet" href="https://kit-pro.fontawesome.com/releases/v5.12.1/css/pro.min.css">
+  <link rel="stylesheet" type="text/css" href='{% static "account/css/style.css" %}'>  
+  <title>صفحه مدیریت</title>
+</head>
+<body class="bg-gray-200">
+
+
+<!-- start navbar -->
+{% include './navbar.html' %}
+<!-- end navbar -->
+
+<div class="h-screen flex flex-row flex-wrap">
+
+    {% include "./sidebar.html" %}
+
+    <div class="bg-gray-100 flex-1 p-6">
+        <div class="card h-full">
+            <div class="card-body h-full">
+                <div class="flex justify-center">
+                    <h2 class="font-bold text-2xl mb-10">مشاهده نظر</h2>
+                </div>
+                <div class="container mx-auto p-6">
+                  <div class="max-w-2xl mx-auto bg-white shadow-md rounded-lg p-6">
+
+                    <div class="mb-4">
+                      <p class="text-gray-700"><span class="font-semibold">کتاب:</span> {{ comment.book }}</p>
+                      <p class="text-gray-700"><span class="font-semibold">نام کاربر:</span> {{ comment.user.first_name }} {{ comment.user.last_name }}</p>
+                      <p class="text-gray-700"><span class="font-semibold">ایمیل:</span> {{ comment.user.email }}</p>
+                      <p class="text-gray-700"><span class="font-semibold">تاریخ ارسال:</span> {{ comment.jcreated_at }}</p>
+                    </div>
+
+                    <div class="mb-6">
+                      <h3 class="text-xl font-semibold mb-2">متن نظر:</h3>
+                      <div class="bg-white p-5 rounded-lg border border-gray-300 text-gray-800 leading-7 break-words max-h-96 overflow-auto">
+                        {{ comment.text|linebreaksbr }}
+                      </div>
+                    </div>
+
+                    <div class="flex space-x-2 justify-end">
+                      {% if not comment.is_approved %}
+                      <form action="{% url 'adminpanel:approve_comment' comment.id %}" method="post" class="inline">
+                        {% csrf_token %}
+                        <button type="submit" class="bg-green-500 hover:bg-green-600 text-white py-2 px-4 rounded-lg text-sm ml-1">تایید</button>
+                      </form>
+                      {% endif %}
+
+                      <a href="{% url 'adminpanel:delete_comment' comment.id %}" class="bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded-lg text-sm ml-1">حذف</a>
+
+                      <a href="{% url 'adminpanel:comment_list' %}" class="bg-gray-300 hover:bg-gray-400 text-gray-800 py-2 px-4 rounded-lg text-sm">
+                        بازگشت
+                      </a>
+                    </div>
+                  </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+  
+
+<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+<script src={% static "account/js/scripts.js" %}></script>
+
+</body>
+</html>

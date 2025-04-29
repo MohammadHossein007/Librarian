@@ -1,0 +1,180 @@
+<!doctype html>
+{% load static %}
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="shortcut icon" href="{% static 'account/img/fav.png' %}" type="image/x-icon">
+  <link rel="stylesheet" href="https://kit-pro.fontawesome.com/releases/v5.12.1/css/pro.min.css">
+  <link rel="stylesheet" type="text/css" href='{% static "account/css/style.css" %}'>
+  <title>صفحه مدیریت</title>
+</head>
+<body class="bg-gray-200">
+
+<!-- start navbar -->
+{% include './navbar.html' %}
+<!-- end navbar -->
+
+<div class="h-screen flex flex-row flex-wrap">
+
+    <!-- start sidebar -->
+    {% include "./sidebar.html" %}
+    <!-- end sidebar -->
+
+    <!-- start content -->
+    <div class="bg-gray-100 flex-1 p-6 space-y-6">
+        <div class="bg-white p-6 rounded-xl shadow mb-8">
+            <div class="flex flex-col md:flex-row items-center">
+                {% if user.profile_image %}
+                <img src="{{ user.profile_image.url }}" alt="" class="w-24 h-24 rounded-full mb-4 md:mb-0 md:mr-6">
+                {% else %}
+                <img src="{% static 'account/img/user.svg' %}" alt="" class="w-24 h-24 rounded-full mb-4 md:mb-0 md:mr-6">
+                {% endif %}
+                <div>
+                    <h2 class="text-xl font-semibold text-center mb-2">{{ user.username }}</h2>
+                    <p class="text-gray-500">{{ user.email }}</p>
+                </div>
+            </div>
+        </div>
+        <!-- آمار کلی -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="report-card">
+                <div class="card">
+                    <div class="card-body flex flex-col">
+                        <div class="flex justify-end items-center">
+                            <div class="h5 text-green-600 fad fa-book"></div>
+                        </div>
+                        <div class="mt-8">
+                            <h1 class="h5">{{ book_count }}</h1>
+                            <p>کتاب</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer bg-white p-1 mx-4 border-t"></div>
+            </div>
+
+            <div class="report-card">
+                <div class="card">
+                    <div class="card-body flex flex-col">
+                        <div class="flex justify-end items-center">
+                            <div class="h5 text-yellow-600 fad fa-users"></div>
+                        </div>
+                        <div class="mt-8">
+                            <h1 class="h5">{{ members_count }}</h1>
+                            <p>عضو</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer bg-white p-1 mx-4 border-t"></div>
+            </div>
+
+            <div class="report-card">
+                <div class="card">
+                    <div class="card-body flex flex-col">
+                        <div class="flex justify-end">
+                            <div class="h5 text-purple-600 fad fa-list"></div>
+                        </div>
+                        <div class="mt-8">
+                            <h1 class="h5">{{ category_count }}</h1>
+                            <p>دسته بندی</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer bg-white p-1 mx-4 border-t"></div>
+            </div>
+        </div>
+
+        <!-- دکمه‌های سریع -->
+        <div class="flex flex-wrap gap-4 justify-center">
+            <a href="{% url 'adminpanel:add_book' %}" class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded-lg">
+                افزودن کتاب جدید
+            </a>
+            <a href="{% url 'adminpanel:add_author' %}" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-lg">
+                افزودن نویسنده جدید
+            </a>
+            <a href="{% url 'adminpanel:add_category' %}" class="bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-2 px-4 rounded-lg">
+                افزودن دسته بندی جدید
+            </a>
+        </div>
+
+        <!-- آخرین فعالیت ها -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+
+            <div class="bg-white p-6 rounded-lg shadow-md">
+                <h2 class="text-xl font-bold mb-4">آخرین کاربران ثبت شده</h2>
+                <ul class="space-y-2">
+                    {% for user in recent_users %}
+                        <li class="flex justify-between text-gray-700">
+                            <span>{{ user.first_name }} {{ user.last_name }}</span>
+                            <span class="text-xs">{{ user.jdate_joined }}</span>
+                        </li>
+                    {% empty %}
+                        <li class="text-gray-400">کاربری ثبت نشده.</li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+            <div class="bg-white p-6 rounded-lg shadow-md">
+                <h2 class="text-xl font-bold mb-4">آخرین نظرات ارسال شده</h2>
+                <ul class="space-y-2">
+                    {% for comment in recent_comments %}
+                        <li class="flex justify-between text-gray-700">
+                            <span>{{ comment.user.first_name }}: {{ comment.text|truncatewords:5 }}</span>
+                            <span class="text-xs">{{ comment.jcreated_at }}</span>
+                        </li>
+                    {% empty %}
+                        <li class="text-gray-400">نظری ارسال نشده.</li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+        </div>
+
+        <!-- چارت ثبت‌نام کاربران -->
+        <div class="bg-white mt-6 p-6 rounded-lg shadow-md">
+            <h2 class="text-xl font-bold mb-6 text-center">ثبت نام کاربران در هفته گذشته</h2>
+            <div id="registrationChart"></div>
+        </div>
+
+    </div>
+    <!-- end content -->
+
+</div>
+<!-- end wrapper -->
+
+
+<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+<script src={% static "account/js/scripts.js" %}></script>
+
+<!-- اسکریپت چارت -->
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    var options = {
+        chart: {
+            type: 'line',
+            height: 300,
+            toolbar: { show: false }
+        },
+        series: [{
+            name: 'ثبت نام',
+            data: {{ registration_data|safe }}
+        }],
+        xaxis: {
+            categories: {{ registration_days|safe }}
+        },
+        colors: ['#10B981'],
+        stroke: {
+            curve: 'smooth'
+        }
+    };
+
+    var chart = new ApexCharts(document.querySelector("#registrationChart"), options);
+    chart.render();
+});
+</script>
+
+</body>
+</html>
+
+
+

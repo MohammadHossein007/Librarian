@@ -1,0 +1,91 @@
+<!doctype html>
+{% load static %}
+<html lang="en" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="shortcut icon" href="{% static 'account/img/fav.png' %}" type="image/x-icon">
+  <link rel="stylesheet" href="https://kit-pro.fontawesome.com/releases/v5.12.1/css/pro.min.css">
+  <link rel="stylesheet" type="text/css" href='{% static "account/css/style.css" %}'>
+  <title>صفحه مدیریت</title>
+</head>
+<body class="bg-gray-200">
+
+
+<!-- start navbar -->
+{% include 'adminpanel/navbar.html' %}
+<!-- end navbar -->
+
+<!-- strat wrapper -->
+<div class="h-screen flex flex-row flex-wrap">
+
+    <!-- start sidebar -->
+    {% include "adminpanel/sidebar.html" %}
+    <!-- end sidebar -->
+
+    <!-- strat content -->
+    <div class="bg-gray-200 flex-1 p-6">
+        <div class="card h-full">
+            <div class="card-body h-full bg-gray-100">
+                <div class="flex flex-col p-6 mr-4">
+                    <h1 class="text-2xl font-semibold text-gray-800 mb-4">کتاب‌های موردعلاقه</h1>
+                
+                    <div class="grid grid-cols-5 md:grid-cols-2 lg:grid-cols-3 gap-12">
+                        {% for wishlist in wishlist_items %}
+                        <div class="bg-white shadow-lg rounded-lg p-4">
+                            <div class="w-full h-56 bg-gray-200 rounded-lg overflow-hidden mb-4">
+                                {% if wishlist.book.image %}
+                                <img src="{{ wishlist.book.image.url }}" alt="{{ wishlist.book.title }}" class="w-full h-full object-cover">
+                                {% else %}
+                                <div class="flex items-center justify-center h-full text-gray-400">تصویر موجود نیست</div>
+                                {% endif %}
+                            </div>
+                
+                            <h2 class="text-xl font-semibold text-gray-800">{{ wishlist.book.title }}</h2>
+                            <p class="text-gray-600">نویسنده: {{ wishlist.book.author }}</p>
+                            <p class="text-gray-500">وضعیت:
+                                {% if wishlist.book.loan_set.exists %}
+                                    {% if wishlist.book.loan_set.first.status == 'o' or wishlist.book.loan_set.first.status == 'b' %}
+                                        <span class="text-red-500">ناموجود</span>
+                                    {% elif wishlist.book.loan_set.first.status == 'r' %}
+                                        <span class="text-green-500">موجود</span>
+                                    {% endif %}
+                                {% else %}
+                                    <span class="text-gray-400">دستیابی ندارید</span>
+                                {% endif %}
+                            </p>
+                
+                            <a href="{% url 'library:book_info' wishlist.book.id %}" class="mt-4 inline-block bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600">
+                                مشاهده جزئیات
+                            </a>
+                            <form method="POST" action="{% url 'account:remove_from_wishlist' wishlist.book.id %}">
+                                {% csrf_token %}
+                                <input type="hidden" name="next" value="{% url 'account:wishlist' %}">
+                                <button class="mt-4 inline-block bg-red-500 text-white py-2 px-4 rounded hover:bg-red-600 " type="submit">حذف</button>
+                            </form>
+                        </div>
+                        {% empty %}
+                        <p class="text-gray-500">هنوز هیچ کتابی به لیست موردعلاقه هات اضافه نکردی</p>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- end content -->
+
+</div>
+<!-- end wrapper -->
+
+
+
+<!-- script -->
+<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+<script src={% static "account/js/scripts.js" %}></script>
+<!-- end script -->
+
+</body>
+</html>
+
+
