@@ -52,7 +52,7 @@ class RegisterView(FormView):
 
         send_mail(
             'کد تایید.',
-            f'کد تایید شما {code}',
+            f'کد تایید شما برای ثبت نام در سایت کتابدار. آن را در اختیار هیچ کس قرار ندهید.{code}',
             'mohammadi.hoseein2007@gmail.com',
             [email],
             fail_silently=False,

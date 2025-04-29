@@ -13,14 +13,14 @@
 
 
 <!-- start navbar -->
-{% include './adminpanel/navbar.html' %}
+{% include 'adminpanel/navbar.html' %}
 <!-- end navbar -->
 
 <!-- strat wrapper -->
 <div class="h-screen flex flex-row flex-wrap">
 
     <!-- start sidebar -->
-    {% include "./adminpanel/sidebar.html" %}
+    {% include "adminpanel/sidebar.html" %}
     <!-- end sidebar -->
 
     <!-- strat content -->
@@ -59,6 +59,9 @@
         <div class="flex flex-col">
             <label for="{{ form.password.id_for_label }}" class="mb-1 text-sm font-medium text-gray-700">رمز عبور</label>
             {{ form.password}}
+            <p class="text-red-600 mt-2">
+                * {{ form.password.help_text|safe }}
+            </p>
         </div>
 
         <div class="flex flex-col">

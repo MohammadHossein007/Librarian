@@ -1,9 +1,8 @@
 from django import forms
 from django.contrib.auth.forms import AuthenticationForm
-from django.db.models import Q
-from django.template.base import kwarg_re
+from django.core.exceptions import ValidationError
 from account.models import Member
-from library.models import Loan, Book
+import re
 
 
 class CustomLoginForm(AuthenticationForm):
@@ -37,6 +36,7 @@ class CompleteProfileForm(forms.ModelForm):
             'class' : 'border rounded-lg px-4 py-2 w-full focus:ring-2 focus:ring-blue-400'
         }),
         label="رمز عبور",
+        help_text="رمز عبور باید حداقل 8 کاراکتر باشد، شامل حروف بزرگ، کوچک، عدد و کاراکتر ویژه مانند @ یا # باشد."
     )
     confirm_password = forms.CharField(
         widget=forms.PasswordInput(attrs={
@@ -48,6 +48,26 @@ class CompleteProfileForm(forms.ModelForm):
     class Meta:
         model = Member
         fields = ['first_name', 'last_name']
+
+    def clean_password(self):
+        password = self.cleaned_data.get('password')
+
+        if len(password) < 8:
+            raise ValidationError('رمز عبور باید حداقل ۸ کاراکتر باشد.')
+
+        if not re.search(r'[A-Z]', password):
+            raise ValidationError('رمز عبور باید حداقل یک حرف بزرگ داشته باشد.')
+
+        if not re.search(r'[a-z]', password):
+            raise ValidationError('رمز عبور باید حداقل یک حرف کوچک داشته باشد.')
+
+        if not re.search(r'[0-9]', password):
+            raise ValidationError('رمز عبور باید حداقل یک عدد داشته باشد.')
+
+        if not re.search(r'[@#$%^&+=!.]', password):
+            raise ValidationError('رمز عبور باید حداقل یک کاراکتر ویژه مانند @ یا # داشته باشد.')
+
+        return password
 
     def clean(self):
         cleaned_data = super().clean()
