@@ -32,15 +32,19 @@ A robust web-based Library Management System built using the Django framework. T
    git clone (https://github.com/MohammadHossein007/Librarian)
    cd librarian
    
-2. **Create and activate virtual environment
+2. **Create and activate virtual environment**
+   ```bash
     python -m venv venv
     source venv/bin/activate  # On Windows: venv\Scripts\activate
 
-3. Install dependencies
-    pip install -r requirements.txt
+3. **Install dependencies**
+   ```bash
+   pip install -r requirements.txt
 
-4. Apply migrations
+5. **Apply migrations**
+    ```bash
     python manage.py migrate
 
-5. Run the server
+6. **Run the server**
+   ```bash
    python manage.py runserver
