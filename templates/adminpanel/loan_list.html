@@ -47,6 +47,12 @@
             {% endif %}
                 <div class="flex justify-between">
                     <h2 class="font-bold text-lg mb-10">امانت ها</h2>
+                    <form method="get" class="flex items-center space-x-2 mb-6">
+                        <input type="text" name="q" value="{{ request.GET.q }}" placeholder="جستجوی کتاب..." 
+                               class="h-10 px-3 rounded-lg border border-gray-300 focus:outline-none focus:ring w-64 text-sm">
+                        <button type="submit" class="h-10 px-4 bg-blue-500 text-white rounded-lg">جستجو</button>
+                    </form>
+                    <div></div>
                  </div>
                 <table class="w-full border border-gray-300 rounded-lg overflow-hidden shadow-lg">
                     <thead class="bg-gray-100 text-gray-700 text-sm">

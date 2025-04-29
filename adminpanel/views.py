@@ -1,7 +1,7 @@
 from django.contrib.auth import get_user_model
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib import messages
-from django.db.models import Count
+from django.db.models import Count, Q
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse_lazy
 from django.utils.timezone import now, timedelta
@@ -90,7 +90,15 @@ class BookListView(LoginRequiredMixin, StaffRequiredMixin, ListView):
     template_name = 'adminpanel/book_list.html'
 
     def get_queryset(self):
-        return Book.objects.select_related('author').order_by('-placed_at')
+        queryset = Book.objects.select_related('author').order_by('-placed_at')
+        query = self.request.GET.get('q')
+        if query:
+            queryset = queryset.filter(
+                Q(title__icontains=query) |
+                Q(author__name__icontains=query) |
+                Q(category__title__icontains=query)
+            )
+        return queryset
 
 
 class BookUpdateView(LoginRequiredMixin, StaffRequiredMixin, UpdateView):
@@ -132,7 +140,18 @@ class LoanListView(LoginRequiredMixin, StaffRequiredMixin, ListView):
     template_name = 'adminpanel/loan_list.html'
 
     def get_queryset(self):
-        return Loan.objects.order_by("-borrowed_on")
+        queryset = Loan.objects.order_by("-borrowed_on")
+        query = self.request.GET.get('q')
+
+        if query:
+            queryset = queryset.filter(
+                Q(book__title__icontains=query) |
+                Q(member__first_name__icontains=query) |
+                Q(member__last_name__icontains=query)
+            )
+
+
+        return queryset
 
 
 class CreateLoanView(LoginRequiredMixin, StaffRequiredMixin, CreateView):
