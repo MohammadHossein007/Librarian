@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
 from pathlib import Path
-from os import path
+from os import path, getenv
 import locale
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -22,12 +22,16 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-$p(c$sq&)=r*gv47mfq0bm%xpx!f48&a(pld_x-ykkjj1)$e#7'
+SECRET_KEY = getenv("SECRET_KEY", "django-insecure-$p(c$sq&)=r*gv47mfq0bm%xpx!f48&a(pld_x-ykkjj1)$e#7")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = getenv("DEBUG", "False") == "True"
 
-ALLOWED_HOSTS = []
+CSRF_COOKIE_SECURE = True
+SESSION_COOKIE_SECURE = True
+
+
+ALLOWED_HOSTS = getenv("ALLOWED_HOSTS", "*").split(",")
 
 
 INTERNAL_IPS = [
@@ -134,9 +138,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
 STATIC_URL = 'static/'
-STATICFILES_DIRS = [path.join(BASE_DIR, 'static')]
-
-# STATIC_ROOT = BASE_DIR / 'static'
+STATIC_ROOT = BASE_DIR / 'static'
+# STATICFILES_DIRS = [path.join(BASE_DIR, 'static')]
 
 MEDIA_URL = 'media/'
 MEDIA_ROOT = path.join(BASE_DIR, 'media')
