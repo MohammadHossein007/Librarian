@@ -6,7 +6,7 @@ class Member(AbstractUser):
     membership_id = models.IntegerField(primary_key=True, null=False, verbose_name='کد عضویت')
     membership_start_date = models.DateField(auto_now_add=True, null=True, verbose_name='تاریخ شروع عضویت')
     membership_end_date = models.DateField(null=True, blank=True, verbose_name='تاریخ پایان عضویت')
-    profile_image = models.ImageField(blank=True, verbose_name='تصویر پروفایل')
+    profile_image = models.ImageField(blank=True, default='user.svg', verbose_name='تصویر پروفایل')
 
     class Meta:
         verbose_name = 'عضو'
